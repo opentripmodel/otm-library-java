@@ -19,17 +19,25 @@ package otm.model.entities;
  *
  */
 public class Constraint extends OtmEntity {
-//    todo not specified in spec?
+    /**
+     * The value of the constraint.
+     */
     private ConstraintValueBase value;
 
-//    todo missing  -> contextEvents, enforceability
+//    todo missing  -> enforceability
 
-    // Getter and setter
-
+    /**
+     * Get the value of the constraint.
+     * @return The value of the constraint.
+     */
     public ConstraintValueBase getValue() {
         return value;
     }
 
+    /**
+     * Set the value of the constraint.
+     * @param value The value of the constraint.
+     */
     public void setValue(ConstraintValueBase value) {
         this.value = value;
     }

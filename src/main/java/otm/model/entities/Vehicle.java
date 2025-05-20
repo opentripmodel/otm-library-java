@@ -6,9 +6,6 @@ import java.util.List;
  * A {@link Vehicle} is a means to transport consignments from one location to potentially multiple other locations. There are various types of vehicles, each with their own unique properties like size, dimensions, fuel type and means of tranport (by air, on land, over sea).
  */
 public class Vehicle extends OtmEntity {
-
-    // todo missing attribute -> contextEvents, otherFuelType, averageFuelConsumption, emissionStandard, sensors, actions
-
     /**
      * The type of vehicle
      */
@@ -17,7 +14,24 @@ public class Vehicle extends OtmEntity {
     /**
      * The type of fuel the vehicle runs on. For vehicle without an engine of their own, such as a trailer, you may choose {@code not-applicable}. For trailers with cooling capabilities, choose the fuel type of the cooling engine.
      */
-    private String fuel; //todo spec makes this a ENUM not string
+    private Fuel fuel;
+
+    /**
+     * Type of fuel, only to be used when the fuel field is set to 'Other'.
+     */
+    private String otherFuelType;
+
+    /**
+     * Average fuel consumption of the vehicle.
+     */
+    private UnitWithValue averageFuelConsumption;
+
+    /**
+     * European emission standards are vehicle emission standards for exhaust emissions of new vehicles sold in
+     * the European Union and EEA member states. The standards are defined in a series of European Union directives
+     * staging the progressive introduction of increasingly stringent standards.
+     */
+    private EmissionStandard emissionStandard;
 
     /**
      * Maximum number of links to other {@link Vehicle}s. Typical values are 0, 1 or 2
@@ -66,6 +80,18 @@ public class Vehicle extends OtmEntity {
      */
     private List<InlineAssociationType<Actor>> actors;
 
+    /**
+     * Vehicles might have some sensors that are permanently attached; these can be described using the sensors field.
+     * If one works with detachable sensors, the recommended approach is to use associationCreated and associationRemoved
+     * events instead.
+     */
+    private List<InlineAssociationType<Sensor>> sensors;
+
+    /**
+     * The actions that are involved for the vehicle (for a particular time window).
+     */
+    private List<InlineAssociationType<Action>> actions;
+
     // Getters and setters
 
     /**
@@ -91,7 +117,7 @@ public class Vehicle extends OtmEntity {
      *
      * @return The fuel type.
      */
-    public String getFuel() {
+    public Fuel getFuel() {
         return fuel;
     }
 
@@ -100,8 +126,62 @@ public class Vehicle extends OtmEntity {
      *
      * @param fuel The fuel type to set.
      */
-    public void setFuel(String fuel) {
+    public void setFuel(Fuel fuel) {
         this.fuel = fuel;
+    }
+
+    /**
+     * Gets the type of fuel when the primary fuel field is set to 'Other'.
+     *
+     * @return The specific type of fuel if the primary fuel is 'Other'.
+     */
+    public String getOtherFuelType() {
+        return otherFuelType;
+    }
+
+    /**
+     * Sets the type of fuel when the primary fuel field is set to 'Other'.
+     *
+     * @param otherFuelType The specific type of fuel if the primary fuel is 'Other'.
+     */
+    public void setOtherFuelType(String otherFuelType) {
+        this.otherFuelType = otherFuelType;
+    }
+
+    /**
+     * Gets the average fuel consumption of the vehicle.
+     *
+     * @return The average fuel consumption as a {@link UnitWithValue} object.
+     */
+    public UnitWithValue getAverageFuelConsumption() {
+        return averageFuelConsumption;
+    }
+
+    /**
+     * Sets the average fuel consumption of the vehicle.
+     *
+     * @param averageFuelConsumption The average fuel consumption as a {@link UnitWithValue} object.
+     */
+    public void setAverageFuelConsumption(UnitWithValue averageFuelConsumption) {
+        this.averageFuelConsumption = averageFuelConsumption;
+    }
+
+    /**
+     * Gets the European emission standard of the vehicle.
+     *
+     * @return The {@link EmissionStandard} of the vehicle.
+     */
+    public EmissionStandard getEmissionStandard() {
+        return emissionStandard;
+    }
+
+    /**
+     * Sets the European emission standard of the vehicle.
+     *
+     * @param emissionStandard The {@link EmissionStandard} of the vehicle.
+     */
+    public void setEmissionStandard(EmissionStandard emissionStandard) {
+        this.emissionStandard = emissionStandard;
     }
 
     /**
@@ -246,5 +326,41 @@ public class Vehicle extends OtmEntity {
      */
     public void setActors(List<InlineAssociationType<Actor>> actors) {
         this.actors = actors;
+    }
+
+    /**
+     * Gets the list of sensors permanently attached to the vehicle.
+     *
+     * @return A list of {@link InlineAssociationType} of {@link Sensor}s.
+     */
+    public List<InlineAssociationType<Sensor>> getSensors() {
+        return sensors;
+    }
+
+    /**
+     * Sets the list of sensors permanently attached to the vehicle.
+     *
+     * @param sensors A list of {@link InlineAssociationType} of {@link Sensor}s to set.
+     */
+    public void setSensors(List<InlineAssociationType<Sensor>> sensors) {
+        this.sensors = sensors;
+    }
+
+    /**
+     * Gets the list of actions associated with the vehicle.
+     *
+     * @return A list of {@link InlineAssociationType} of {@link Action}s.
+     */
+    public List<InlineAssociationType<Action>> getActions() {
+        return actions;
+    }
+
+    /**
+     * Sets the list of actions associated with the vehicle.
+     *
+     * @param actions A list of {@link InlineAssociationType} of {@link Action}s to set.
+     */
+    public void setActions(List<InlineAssociationType<Action>> actions) {
+        this.actions = actions;
     }
 }

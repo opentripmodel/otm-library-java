@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class Location extends OtmEntity {
 
-//    todo missing attribute -> contextEvents, subLocations
+//    todo missing attribute -> subLocations
 
     /**
      * The type of location

@@ -10,3 +10,4 @@ public enum LocationType {
     RESTRICTED_AREA,
     CUSTOMER
 }
+//todo missing type -> operationalBase

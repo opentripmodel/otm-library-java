@@ -4,9 +4,6 @@ package otm.model.entities;
  * A Trip is an aggregate entity that combines various entities to model visiting various locations, potentially doing one or multiple actions on each location, such as loading or unloading consignments. It is optionally coupled to a {@link Vehicle} that is/was driving this trip.
  */
 public class Trip extends OtmEntity {
-
-    //    todo missing attribute -> contextEvents,
-
     /**
      * Whether this trip is a draft, requested, confirmed, in transit, completed or cancelled. The values accepted (replaced by confirmed) and modified (replaced the lastModified field on every entity) are deprecated since OTM5.1, but will be supported for the whole OTM5.X line.
      */

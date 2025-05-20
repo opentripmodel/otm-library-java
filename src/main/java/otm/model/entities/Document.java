@@ -1,9 +1,6 @@
 package otm.model.entities;
 
 public class Document extends OtmEntity {
-
-//    todo missing attribute -> contextEvents
-
     /**
      * The content of the document. There are two different options on how the content can be provided. Either through an external link to where the content lives. Or directly as an encoded base64 string.
      */

@@ -7,7 +7,6 @@ import java.util.List;
  */
 public class TransportOrder extends OtmEntity {
 
-//    todo missing attribute -> contextEvents,
 
     /**
      * A free text description of this transport order

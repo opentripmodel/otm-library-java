@@ -2,13 +2,13 @@ package otm.model.entities;
 
 import java.util.Date;
 
-//Todo missing contraint types??? -> endDateTimeConstraint, temperatureConstraint, sizeConstraint, weightConstraint, speedConstraint, accessConstraint, transportEquipmentTypeConstraint, sensorValueConstraint, emissionStandardConstraint, fuelTypeConstraint, vehicleTypeConstraint, routeEntityConstraint, routeConstraint, notConstraint
+//Todo missing constraint types -> endDateTimeConstraint, temperatureConstraint, sizeConstraint, weightConstraint, speedConstraint, accessConstraint, transportEquipmentTypeConstraint, sensorValueConstraint, emissionStandardConstraint, fuelTypeConstraint, vehicleTypeConstraint, routeEntityConstraint, routeConstraint, notConstraint
 
 public class GenericConstraint extends ConstraintValueBase {
 
     @Override
-    public ConstraintTypeEnum getType() {
-        return ConstraintTypeEnum.GENERIC_CONSTRAINT;
+    public ConstraintType getType() {
+        return ConstraintType.GENERIC_CONSTRAINT;
     }
 
     /**
@@ -38,8 +38,8 @@ public class GenericConstraint extends ConstraintValueBase {
 class AndConstraint extends GenericConstraint {
 
     @Override
-    public ConstraintTypeEnum getType() {
-        return ConstraintTypeEnum.AND_CONSTRAINT;
+    public ConstraintType getType() {
+        return ConstraintType.AND_CONSTRAINT;
     }
 
     /**
@@ -69,8 +69,8 @@ class AndConstraint extends GenericConstraint {
 class OrConstraint extends GenericConstraint {
 
     @Override
-    public ConstraintTypeEnum getType() {
-        return ConstraintTypeEnum.OR_CONSTRAINT;
+    public ConstraintType getType() {
+        return ConstraintType.OR_CONSTRAINT;
     }
 
     /**
@@ -92,8 +92,8 @@ class OrConstraint extends GenericConstraint {
 class TimeWindowConstraint extends GenericConstraint {
 
     @Override
-    public ConstraintTypeEnum getType() {
-        return ConstraintTypeEnum.TIME_WINDOW_CONSTRAINT;
+    public ConstraintType getType() {
+        return ConstraintType.TIME_WINDOW_CONSTRAINT;
     }
 
     /**
@@ -159,8 +159,8 @@ enum ValueBoundConstraintType {MAXIMUM, MINIMUM, RANGE}
 class ValueBoundConstraint extends GenericConstraint {
 
     @Override
-    public ConstraintTypeEnum getType() {
-        return ConstraintTypeEnum.VALUE_BOUND_CONSTRAINT;
+    public ConstraintType getType() {
+        return ConstraintType.VALUE_BOUND_CONSTRAINT;
     }
 
     /**

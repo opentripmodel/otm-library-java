@@ -16,3 +16,5 @@ public enum ContactDetailType {
     PHONE,
     MOBILE_PHONE
 }
+//Todo missing the following types -> eori, phone
+//Todo extra type -> MIDDLE_NAME

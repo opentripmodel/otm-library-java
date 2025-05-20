@@ -26,6 +26,8 @@ import java.util.Objects;
  */
 public class Action extends OtmEntity {
 
+//    Todo missing attribute -> result, sequenceNr, transportEquipment, Documents, timeFormat, recurrence, duration
+
     /**
      * The type of action this class is.
      */
@@ -262,7 +264,7 @@ public class Action extends OtmEntity {
     /**
      * Gets The {@link List} of {@link Action} wrapped in {@link InlineAssociationType} for this {@link Action}
      * <p>
-     *     TODO: Add proper text here
+     *
      * </p>
      * @return The {@link List} of {@code Actions} this {@link Action} contains
      */
@@ -273,7 +275,7 @@ public class Action extends OtmEntity {
     /**
      * Set the {@link List} of {@link Action} for this {@link Action}
      * <p>
-     *     TODO: Add proper text here
+     *
      * </p>
      * @param actions A {@link List} of {@link Action} wrapped in {@link InlineAssociationType} to be set for the {@link Action}
      */

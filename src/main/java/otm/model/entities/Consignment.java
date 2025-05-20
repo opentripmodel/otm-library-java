@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class Consignment extends OtmEntity {
 
-//    todo missing attribute -> contextEvents, transportOrder, relatedConsignments
+//    todo missing attribute -> transportOrder, relatedConsignments
 
     /**
      * General description of consignment in Free text. e.g 20 europallets fruit.

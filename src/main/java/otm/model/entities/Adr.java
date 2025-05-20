@@ -81,7 +81,7 @@ public class Adr {
 
 //    todo this property does not exist in https://otm5.opentripmodel.org/#tag/Goods/paths/~1api~1v5~1goods~1%7BUUID%7D/get
     /**
-     * //todo add docs
+     *
      */
     private String dangerNumber;
 
@@ -221,7 +221,6 @@ public class Adr {
     }
 
     /**
-     * //todo add docs
      * @return
      */
     public String getDangerNumber() {
@@ -229,7 +228,6 @@ public class Adr {
     }
 
     /**
-     * //todo add docs
      * @param dangerNumber
      */
     public void setDangerNumber(String dangerNumber) {

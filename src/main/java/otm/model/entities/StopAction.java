@@ -1,10 +1,6 @@
 package otm.model.entities;
 
 public class StopAction extends Action {
-
-//    note below: These are not present in this object, either though {@link Action} or any other deep link
-//    todo missing attribute -> contextEvents, result, trip, TimeFormat, recurrence, duration
-
     @Override
     public ActionType getActionType() {
         return ActionType.STOP;

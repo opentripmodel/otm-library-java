@@ -4,7 +4,7 @@ import java.util.List;
 
 public class GoodItem extends OtmEntity {
 
-//    todo missing attribute -> ContextEvents, grossWeight, classificationLines
+//    todo missing attribute -> grossWeight, classificationLines
 
     private GoodItemType type;
 

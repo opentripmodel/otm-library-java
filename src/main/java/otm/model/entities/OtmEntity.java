@@ -2,6 +2,7 @@ package otm.model.entities;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.List;
 
 /**
  * An abstract base class, used as a basis for many of the OTM entities
@@ -37,6 +38,18 @@ public abstract class OtmEntity {
      * The last modified date of this entity. If none is given the creation date is used instead.
      */
     private LocalDateTime lastModified;
+
+    /**
+     * The context events provides some optional information about the events that can provide
+     * additional information on the current state of this entity.
+     *
+     * For example: your system might send ETA information for the arrival of a vehicle on a location.
+     * To make it clear what caused this ETA to be updated, we can include some information about what
+     * caused this ETA update by including an event as context. If your ETA update was caused by a
+     * location update, this event can be included as context.If the ETA was caused by a traffic accident
+     * on the route of the vehicle, you can include that event in the context.
+     */
+    public List<Event> contextEvents;
 
     /**
      * @return String, The id of the current entity
@@ -124,5 +137,21 @@ public abstract class OtmEntity {
      */
     public void setLastModified(LocalDateTime lastModified) {
         this.lastModified = lastModified;
+    }
+
+    /**
+     *
+     * @return The context events.
+     */
+    public List<Event> getEvents(){
+        return contextEvents;
+    }
+
+    /**
+     * Sets the context events.
+     * @param events The context events to set.
+     */
+    public void setEvents(List<Event> events){
+        this.contextEvents = events;
     }
 }

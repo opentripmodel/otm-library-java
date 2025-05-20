@@ -20,7 +20,6 @@ public class Route extends OtmEntity {
 
     /**
      * Geographic representation of this route.
-     * todo this attribute type looks to be wrong, this should be a list of possible types
      */
     private LatLonArrayGeoReference geoReferences;
 

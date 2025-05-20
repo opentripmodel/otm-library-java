@@ -1,6 +1,6 @@
 package otm.model.entities;
 
-//todo missing types?? -> tmcArrayGeoReference, tmcLocationGeoReference, openLRGeoReference, Feature
+//todo missing types -> tmcArrayGeoReference, tmcLocationGeoReference, openLRGeoReference, Feature
 
 /**
  * The different types of {@code GeoReferenceType} available

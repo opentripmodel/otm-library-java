@@ -1,7 +1,7 @@
 package otm.model.entities;
 
 public abstract class ConstraintValueBase {
-    public abstract ConstraintTypeEnum getType();
+    public abstract ConstraintType getType();
 
 //    todo missing -> description
 }

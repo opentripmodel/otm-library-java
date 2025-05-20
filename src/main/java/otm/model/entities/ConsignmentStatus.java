@@ -6,6 +6,7 @@ package otm.model.entities;
 public enum ConsignmentStatus {
     DRAFT,
     REQUESTED,
+    CONFIRMED,
     IN_TRANSIT,
     COMPLETED,
     CANCELLED,
