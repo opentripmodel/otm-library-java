@@ -48,7 +48,7 @@ public abstract class OtmEntity {
      * location update, this event can be included as context.If the ETA was caused by a traffic accident
      * on the route of the vehicle, you can include that event in the context.
      */
-    public List<Event> contextEvents;
+    private List<Event> contextEvents;
 
     /**
      * @return String, The id of the current entity

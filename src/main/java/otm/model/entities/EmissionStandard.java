@@ -1,11 +1,11 @@
 package otm.model.entities;
 
 public enum EmissionStandard {
-    Euro0,
-    Euro1,
-    Euro2,
-    Euro3,
-    Euro4,
-    Euro5,
-    Euro6
+    EURO_0,
+    EURO_1,
+    EURO_2,
+    EURO_3,
+    EURO_4,
+    EURO_5,
+    EURO_6
 }

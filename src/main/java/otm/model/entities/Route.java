@@ -29,24 +29,6 @@ public class Route extends OtmEntity {
     // Getters and setters
 
     /**
-     * Gets the context events associated with the route.
-     *
-     * @return The context events.
-     */
-    public Object getContextEvents() {
-        return contextEvents;
-    }
-
-    /**
-     * Sets the context events associated with the route.
-     *
-     * @param contextEvents The context events to set.
-     */
-    public void setContextEvents(Object contextEvents) {
-        this.contextEvents = contextEvents;
-    }
-
-    /**
      * Gets the geographic references of the route.
      *
      * @return The geographic references.
