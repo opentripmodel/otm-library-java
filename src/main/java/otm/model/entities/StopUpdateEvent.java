@@ -6,6 +6,6 @@ public class StopUpdateEvent extends StopAction implements IUpdateEvent {
 
     @Override
     public EntityType getEntityType() {
-        return EntityType.Stop;
+        return EntityType.STOP;
     }
 }

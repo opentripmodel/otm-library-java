@@ -6,6 +6,6 @@ public class TripUpdateEvent extends Trip implements IUpdateEvent {
 
     @Override
     public EntityType getEntityType() {
-        return EntityType.Trip;
+        return EntityType.TRIP;
     }
 }

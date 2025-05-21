@@ -7,15 +7,15 @@ public enum Severity {
     /**
      * Informational message that does not affect validity.
      */
-    Info,
+    INFO,
 
     /**
      * Indicates a potential issue that may require attention.
      */
-    Warning,
+    WARNING,
 
     /**
      * Indicates a critical issue that renders the entity invalid.
      */
-    Error
+    ERROR
 }

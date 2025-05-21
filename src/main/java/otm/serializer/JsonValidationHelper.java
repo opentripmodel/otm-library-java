@@ -2,12 +2,14 @@ package otm.serializer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectReader;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 
 
 public class JsonValidationHelper {
+
+    private JsonValidationHelper() {
+        throw new IllegalStateException("Utility class");
+    }
 
     // Using a static ObjectMapper for efficiency, configured with default behavior
     // For OTM-specific serialization options (camelCase, enum as string), you'd typically

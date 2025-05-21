@@ -3,7 +3,6 @@ package otm.profile.validation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ValidationResult {
     private List<ValidationMessage> messages;
@@ -23,7 +22,7 @@ public class ValidationResult {
      * Gets whether the validation is considered successful (no errors).
      */
     public boolean isValid() {
-        return this.messages.stream().noneMatch(m -> m.getSeverity() == Severity.Error);
+        return this.messages.stream().noneMatch(m -> m.getSeverity() == Severity.ERROR);
     }
 
     /**
@@ -39,7 +38,7 @@ public class ValidationResult {
 
     public static ValidationResult failure(String message) {
         ValidationMessage errorMessage = new ValidationMessage();
-        errorMessage.setSeverity(Severity.Error);
+        errorMessage.setSeverity(Severity.ERROR);
         errorMessage.setMessage(message);
         return new ValidationResult(errorMessage);
     }

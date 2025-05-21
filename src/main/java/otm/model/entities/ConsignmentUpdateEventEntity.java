@@ -4,6 +4,6 @@ public class ConsignmentUpdateEventEntity extends Consignment implements IUpdate
 
     @Override
     public EntityType getEntityType() {
-        return EntityType.Consignment;
+        return EntityType.CONSIGNMENT;
     }
 }

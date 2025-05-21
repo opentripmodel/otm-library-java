@@ -1,12 +1,12 @@
 package otm.model.entities;
 
 public enum Fuel {
-    Petrol,
-    Diesel,
-    Electricity,
-    Hydrogen,
-    Lng,
-    Cng,
-    AdBlue,
-    Other
+    PETROL,
+    DIESEL,
+    ELECTRICITY,
+    HYDROGEN,
+    LNG,
+    CNG,
+    AD_BLUE,
+    OTHER
 }

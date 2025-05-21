@@ -6,18 +6,6 @@ import java.util.List;
  * A route models the path going from one location to at least one other location.
  */
 public class Route extends OtmEntity {
-
-    /**
-     * The context events provides some optional information about the events that can provide additional
-     * information on the current state of this entity.
-     * <p>
-     * For example: your system might send ETA information for the arrival of a vehicle on a location.  To make it clear
-     * what caused this ETA to be updated, we can include some information about what caused this ETA update by including
-     * an event as context. If your ETA update was caused by a location update, this event can be included as context.
-     * If the ETA was caused by a traffic accident on the route of the vehicle, you can include that event in the context.
-     */
-    private Object contextEvents;
-
     /**
      * Geographic representation of this route.
      */
