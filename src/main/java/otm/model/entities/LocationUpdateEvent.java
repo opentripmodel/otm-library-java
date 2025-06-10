@@ -1,7 +1,5 @@
 package otm.model.entities;
 
-//todo unused class??
-
 public class LocationUpdateEvent extends UpdateEvent {
 
     @Override

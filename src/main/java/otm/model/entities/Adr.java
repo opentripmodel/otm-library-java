@@ -1,26 +1,24 @@
 package otm.model.entities;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Information about the potentially dangerous properties of these goods.
  */
 public class Adr {
-
-//    todo missing -> specialProvisions, points, transportCategory
-
     /**
      * A UN number (United Nations number) is a four-digit number that identifies hazardous materials, and articles (such as explosives, flammable liquids, oxidizers, toxic liquids, etc.) in the framework of international transport. The list of UN numbers can be found in the official specification.
      */
     private String unNumber;
 
     /**
-     * Marks shall be in an official language of the country of origin and also, if that language is not English, French or German, in English, French or German, unless agreements, if any, concluded between the countries concerned in transport operations provide otherwise.
+     * Marks shall be in an official language as the country of origin and also, if that language is not English, French or German, in English, French or German, unless agreements, if any, concluded between the countries concerned in transport operations provide otherwise.
      */
     private String language;
 
     /**
-     * Contains in upper case characters, the name of the substance or article, if the substance or article has been assigned its own specific UN number, or otherwise the proper shipping name shall be used.
+     * Contains in upper case characters, the name of the substance or article if the substance or article has been assigned its own specific UN number, or otherwise the proper shipping name shall be used.
      */
     private String description;
 
@@ -50,7 +48,7 @@ public class Adr {
      *     <li>Class 1 Explosive substances and articles</li>
      *     <li>Class 2 Gases</li>
      *     <li>Class 3 Flammable liquids</li>
-     *     <li>Class 4.1 Flammable solids, self reactive substances, polymerizing substances and solid desensitized explosives</li>
+     *     <li>Class 4.1 Flammable solids, self-reactive substances, polymerizing substances and solid desensitized explosives</li>
      *     <li>Class 4.2 Substances liable to spontaneous combustion</li>
      *     <li>Class 4.3 Substances which, in contact with water, emit flammable gases</li>
      *     <li>Class 5.1 Oxidizing substances</li>
@@ -79,7 +77,6 @@ public class Adr {
      */
     private List<String> dangerLabels;
 
-//    todo this property does not exist in https://otm5.opentripmodel.org/#tag/Goods/paths/~1api~1v5~1goods~1%7BUUID%7D/get
     /**
      *
      */
@@ -89,6 +86,23 @@ public class Adr {
      * Code to indicate tunnel category where restrictions apply to the passage of vehicles carrying dangerous goods. Categories A.B.C.D. and E as defined in 1.9.5.2.2. <a href="https://unece.org/sites/default/files/2021-01/ADR2021_Vol1e_0.pdf">ADR2021_Vol1e_0.pdf</a>
      */
     private String tunnelCode;
+
+    /**
+     * Special provisions related to this entity or action.
+     */
+    private String specialProvisions;
+
+    /**
+     * Points associated with this entity, if applicable.
+     * Represented as an Optional to handle the nullable nature of System.Int32.
+     */
+    private Optional<Integer> points;
+
+    /**
+     * The transport category for this entity, if applicable.
+     * Represented as an Optional to handle the nullable nature of TransportCategory.
+     */
+    private Optional<TransportCategory> transportCategory;
 
     // Getters and setters
 
@@ -157,16 +171,16 @@ public class Adr {
     }
 
     /**
-     * Get the number of the class, whose heading covers the dangerous substance or article. 2.1.1.1 The classes of dangerous goods according to ADR
-     * @return Number of the class, whose heading covers the dangerous substance or article. 2.1.1.1 The classes of dangerous goods according to ADR
+     * Get the number of the class, whose heading covers the dangerous substance or article. 2.1.1.1 The classes of dangerous goods, according to ADR
+     * @return Number of the class, whose heading covers the dangerous substance or article. 2.1.1.1 The classes of dangerous goods, according to ADR
      */
     public String getClazz() {
         return clazz;
     }
 
     /**
-     * Set the number of the class, whose heading covers the dangerous substance or article. 2.1.1.1 The classes of dangerous goods according to ADR
-     * @param clazz The number of the class, whose heading covers the dangerous substance or article. 2.1.1.1 The classes of dangerous goods according to ADR
+     * Set the number of the class, whose heading covers the dangerous substance or article. 2.1.1.1 The classes of dangerous goods, according to ADR
+     * @param clazz The number of the class, whose heading covers the dangerous substance or article. 2.1.1.1 The classes of dangerous goods, according to ADR
      */
     public void setClazz(String clazz) {
         this.clazz = clazz;
@@ -248,5 +262,59 @@ public class Adr {
      */
     public void setTunnelCode(String tunnelCode) {
         this.tunnelCode = tunnelCode;
+    }
+
+    /**
+     * Gets any special provisions.
+     *
+     * @return A string detailing special provisions, or {@code null} if none are specified.
+     */
+    public String getSpecialProvisions() {
+        return specialProvisions;
+    }
+
+    /**
+     * Sets special provisions.
+     *
+     * @param specialProvisions A string containing special provisions.
+     */
+    public void setSpecialProvisions(String specialProvisions) {
+        this.specialProvisions = specialProvisions;
+    }
+
+    /**
+     * Gets the points associated with this entity.
+     *
+     * @return An {@link Optional} containing the integer points if present, otherwise an empty Optional.
+     */
+    public Optional<Integer> getPoints() {
+        return points;
+    }
+
+    /**
+     * Sets the points associated with this entity.
+     *
+     * @param points An {@link Optional} containing the integer points to set, or an empty Optional if not applicable.
+     */
+    public void setPoints(Optional<Integer> points) {
+        this.points = points;
+    }
+
+    /**
+     * Gets the transport category for this entity.
+     *
+     * @return An {@link Optional} containing the {@link TransportCategory} if present, otherwise an empty Optional.
+     */
+    public Optional<TransportCategory> getTransportCategory() {
+        return transportCategory;
+    }
+
+    /**
+     * Sets the transport category for this entity.
+     *
+     * @param transportCategory An {@link Optional} containing the {@link TransportCategory} to set, or an empty Optional if not applicable.
+     */
+    public void setTransportCategory(Optional<TransportCategory> transportCategory) {
+        this.transportCategory = transportCategory;
     }
 }

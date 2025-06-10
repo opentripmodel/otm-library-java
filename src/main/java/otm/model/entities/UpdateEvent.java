@@ -2,8 +2,6 @@ package otm.model.entities;
 
 import java.util.List;
 
-//todo Is this used??
-
 public abstract class UpdateEvent extends OtmEntity {
 
     /**

@@ -6,9 +6,6 @@ import java.util.List;
  * A consignment is a description of an identifiable collection of goods items to be transported between the consignor and the consignee. This information may be defined within a transport contract.
  */
 public class Consignment extends OtmEntity {
-
-//    todo missing attribute -> transportOrder, relatedConsignments
-
     /**
      * General description of consignment in Free text. e.g 20 europallets fruit.
      */
@@ -53,6 +50,19 @@ public class Consignment extends OtmEntity {
      * Constraints this consignment has to abide to, such special equipment (tail lift, truck mounted forklift), special vehicle, special instructions related to consignor and consignee. Note that you can put the constraints on the individual goods. However using constraints on the consignment is simpler and therefore recommended when possible.
      */
     private InlineAssociationType<Constraint> constraint;
+
+    /**
+     * The transport order this consignment belongs to.
+     */
+    private InlineAssociationType<TransportOrder> transportOrder;
+
+    /**
+     * Consignments that have replaced the current consignment. For various reasons, a
+     * consignment can be canceled and replaced by one or more other consignments. An example
+     * is when the consignment is too large to be transported as a single 'transportable unit'.
+     * You can use the relation field in the association to indicate the type of relationship.
+     */
+    private List<InlineAssociationType<Consignment>> relatedConsignments;
 
     // Getters and setters
 
@@ -216,5 +226,41 @@ public class Consignment extends OtmEntity {
      */
     public void setConstraint(InlineAssociationType<Constraint> constraint) {
         this.constraint = constraint;
+    }
+
+    /**
+     * Gets the transport order this consignment belongs to.
+     *
+     * @return An {@link InlineAssociationType} instance representing the transport order.
+     */
+    public InlineAssociationType<TransportOrder> getTransportOrder() {
+        return transportOrder;
+    }
+
+    /**
+     * Sets the transport order this consignment belongs to.
+     *
+     * @param transportOrder The {@link InlineAssociationType} instance to set as the transport order.
+     */
+    public void setTransportOrder(InlineAssociationType<TransportOrder> transportOrder) {
+        this.transportOrder = transportOrder;
+    }
+
+    /**
+     * Gets the list of related consignments that have replaced the current one.
+     *
+     * @return A {@link List} of {@link InlineAssociationType} instances, each representing a related consignment.
+     */
+    public List<InlineAssociationType<Consignment>> getRelatedConsignments() {
+        return relatedConsignments;
+    }
+
+    /**
+     * Sets the list of related consignments that have replaced the current one.
+     *
+     * @param relatedConsignments A {@link List} of {@link InlineAssociationType} instances to set as related consignments.
+     */
+    public void setRelatedConsignments(List<InlineAssociationType<Consignment>> relatedConsignments) {
+        this.relatedConsignments = relatedConsignments;
     }
 }

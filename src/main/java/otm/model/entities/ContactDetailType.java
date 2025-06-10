@@ -5,16 +5,14 @@ package otm.model.entities;
  */
 public enum ContactDetailType {
     OTHER,
+    EORI,
     IBAN,
     GLN,
     VAT_CODE,
     NAME,
     LAST_NAME,
-    MIDDLE_NAME,
     FIRST_NAME,
     EMAIL,
     PHONE,
     MOBILE_PHONE
 }
-//Todo missing the following types -> eori, phone
-//Todo extra type -> MIDDLE_NAME

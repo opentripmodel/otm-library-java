@@ -1,7 +1,7 @@
 package otm.model.entities;
 
 /**
- * Address information that is used as an administrative reference. For example: when the actual load location is different from the officially registered location, this holds the latter
+ * Address information that is used as an administrative reference. For example, when the actual load location is different from the officially registered location, this holds the latter
  */
 public class AdministrativeReference {
     /**
@@ -120,16 +120,16 @@ public class AdministrativeReference {
     }
 
     /**
-     * Get the city of the administrative reference address
-     * @return The city of the administrative reference address
+     * Get city of the administrative reference address
+     * @return The city of administrative reference address
      */
     public String getCity() {
         return city;
     }
 
     /**
-     * Set the city of the administrative reference address
-     * @param city The city of the administrative reference address
+     * Set city of the administrative reference address
+     * @param city The city of administrative reference address
      */
     public void setCity(String city) {
         this.city = city;

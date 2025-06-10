@@ -2,8 +2,6 @@ package otm.model.entities;
 
 import java.util.Date;
 
-//Todo missing constraint types -> endDateTimeConstraint, temperatureConstraint, sizeConstraint, weightConstraint, speedConstraint, accessConstraint, transportEquipmentTypeConstraint, sensorValueConstraint, emissionStandardConstraint, fuelTypeConstraint, vehicleTypeConstraint, routeEntityConstraint, routeConstraint, notConstraint
-
 public class GenericConstraint extends ConstraintValueBase {
 
     @Override

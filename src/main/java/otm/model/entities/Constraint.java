@@ -24,7 +24,10 @@ public class Constraint extends OtmEntity {
      */
     private ConstraintValueBase value;
 
-//    todo missing  -> enforceability
+    /**
+     * The enforceability status of this entity or rule, defaulting to enforced.
+     */
+    private Enforceability enforceability = Enforceability.ENFORCED;
 
     /**
      * Get the value of the constraint.
@@ -40,5 +43,23 @@ public class Constraint extends OtmEntity {
      */
     public void setValue(ConstraintValueBase value) {
         this.value = value;
+    }
+
+    /**
+     * Gets the enforceability status.
+     *
+     * @return The {@link Enforceability} enum value.
+     */
+    public Enforceability getEnforceability() {
+        return enforceability;
+    }
+
+    /**
+     * Sets the enforceability status.
+     *
+     * @param enforceability The {@link Enforceability} enum value to set.
+     */
+    public void setEnforceability(Enforceability enforceability) {
+        this.enforceability = enforceability;
     }
 }

@@ -8,6 +8,6 @@ public enum LocationType {
     STORE,
     ENVIRONMENTAL_ZONE,
     RESTRICTED_AREA,
-    CUSTOMER
+    CUSTOMER,
+    OPERATIONAL_BASE
 }
-//todo missing type -> operationalBase

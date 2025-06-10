@@ -6,7 +6,7 @@ import java.util.Objects;
 
 /**
  * <p>
- * Actions are dynamic entities that are able to couple together various static entities at a certain moment in time. For instance a Load action couples together a Consignment and a Vehicle at the moment the Loading happens.
+ * Actions are dynamic entities that are able to couple together various static entities at a certain moment in time. For instance, a Load action couples together a Consignment and a Vehicle at the moment the Loading happens.
  * </p>
  * <p>
  * There are various types of Actions:
@@ -16,18 +16,15 @@ import java.util.Objects;
  * <li>The Unload action, that models unloading one or multiple Consignments from a vehicle or some other sort of container.</li>
  * <li>The HandOver that indicates transferring a consignment from one Actor to another.</li>
  * <li>The Move that models moving between two or more locations, potentially with detailed route information on how to move between these locations.</li>
- * <li>The AttachTransportEquipment that allows you to attach some equipment to the associated vehicle. Note that you can both load/unload and attach/detach TransportEquipments. For instance loading a container on a ship, or attach a trailer to a truck. So choose the one that is most appropriate.</li>
+ * <li>The AttachTransportEquipment that allows you to attach some equipment to the associated vehicle. Note that you can both load/unload and attach/detach TransportEquipments. For instance, loading a container on a ship, or attach a trailer to a truck. So choose the one that is most appropriate.</li>
  * <li>The DetachTransportEquipment that allows you to detach some previously attached equipment from the associated vehicle.</li>
- * <li>The Break action that models a mandatory resting period for the driver of the vehicle. During this period the driver is prohibited from doing any driving activities or other work.</li>
- * <li>The Wait action that models waiting at a particular location during the trip. This can be due to various circumstances such as waiting for the vehicle to be transported by a ferry or train. Or because of waiting at frontiers or docks (e.g. the dock of the loading/unload location is occupied) or traffic prohibitions. The driver is allowed to leave the vehicle during this period. An important aspect distinguishing this from the break action is that waiting times can be shortened because of changing circumstances. For example, if the original waiting time was expected to be 15 minutes because of an occupied dock, but the driver is 10 minutes late, the waiting time can be shortened to 5 minutes until the dock is free.</li>
+ * <li>The Break action that models a mandatory resting period for the driver of the vehicle. During this period, the driver is prohibited from doing any driving activities or other work.</li>
+ * <li>The Wait action that models waiting at a particular location during the trip. This can be due to various circumstances such as waiting for the vehicle to be transported by a ferry or train. Or because of waiting at frontiers or docks (e.g., the dock of the loading/unload location is occupied) or traffic prohibitions. The driver is allowed to leave the vehicle during this period. An important aspect distinguishing this from the break action is that waiting times can be shortened because of changing circumstances. For example, if the original waiting time was expected to be 15 minutes because of an occupied dock, but the driver is 10 minutes late, the waiting time can be shortened to 5 minutes until the dock is free.</li>
  * <li>The GenericAction for whenever any of the above actions cannot model the situation appropriately.</li>
  * </ul>
  * </p>
  */
 public class Action extends OtmEntity {
-
-//    Todo missing attribute -> result, sequenceNr, transportEquipment, Documents, timeFormat, recurrence, duration
-
     /**
      * The type of action this class is.
      */
@@ -35,7 +32,7 @@ public class Action extends OtmEntity {
 
     /**
      * A lifecycle models when the data in the action is taking place. You can provide the same action in multiple
-     * lifecycles to model how it changes over time. For example the planned and realized time of an action taking
+     * lifecycles to model how it changes over time. For example, the planned and realized time of an action taking
      * place can differ because of unforeseen circumstances (such as traffic jams).
      */
     private Lifecycle lifecycle;
@@ -61,7 +58,7 @@ public class Action extends OtmEntity {
     private InlineAssociationType<Location> location;
 
     /**
-     * The time at which the actions starts
+     * The time at which the action starts
      */
     private Date startTime;
 
@@ -79,6 +76,36 @@ public class Action extends OtmEntity {
      * The constraints this action abides to, such as start and end time windows.
      */
     private List<InlineAssociationType<Constraint>> constraint;
+
+    /**
+     * The result of the action. Can only be present in the actual or realized
+     * lifecycles. The result has a required status and optional additional info,
+     * like a remark and reason (in the case of failure).
+     */
+    private List<ActionResult> result;
+
+    /**
+     * The sequence number of this action within the entity it is taking place.
+     * Can be used to indicate order when no times are present.
+     */
+    private int sequenceNr;
+
+    /**
+     * The format of the time for this action.
+     */
+    private TimeFormat timeFormat;
+
+    /**
+     * The recurrence of the date time. Should only be set when timeFormat is set
+     * to recurringDateTime. The recurrence follows the Recurrence Rule specification.
+     */
+    private String recurrence;
+
+    /**
+     * The duration of this action/event. Should only be set when timeFormat is set
+     * to duration. The duration follows the ISO 8601 specification.
+     */
+    private String duration;
 
     // Getters and setters
 
@@ -121,7 +148,7 @@ public class Action extends OtmEntity {
     /**
      * Sets the lifecycle for this {@link Action}.
      * <p>
-     *     This method allow you to specify the {@link Lifecycle} of this object.
+     *     This method allows you to specify the {@link Lifecycle} of this object.
      * </p>
      * @param lifecycle The current {@link Lifecycle} to set for this object. Must not be {@code null}
      */
@@ -143,7 +170,7 @@ public class Action extends OtmEntity {
     /**
      * Sets the remark for this {@link Action}.
      * <p>
-     *     This method allow you to set the remark for this {@link Action}.
+     *     This method allows you to set the remark for this {@link Action}.
      * </p>
      * @param remark The remark to set for this {@link Action}.
      */
@@ -304,5 +331,95 @@ public class Action extends OtmEntity {
      */
     public void setConstraint(List<InlineAssociationType<Constraint>> constraint) {
         this.constraint = constraint;
+    }
+
+    /**
+     * Gets the result of the action.
+     *
+     * @return A list of {@link ActionResult} objects representing the result of the action.
+     */
+    public List<ActionResult> getResult() {
+        return result;
+    }
+
+    /**
+     * Sets the result of the action.
+     *
+     * @param result A list of {@link ActionResult} objects to set as the result of the action.
+     */
+    public void setResult(List<ActionResult> result) {
+        this.result = result;
+    }
+
+    /**
+     * Gets the sequence number of this action.
+     *
+     * @return the sequence number
+     */
+    public int getSequenceNr() {
+        return sequenceNr;
+    }
+
+    /**
+     * Sets the sequence number of this action.
+     *
+     * @param sequenceNr int the sequence number to set.
+     */
+    public void setSequenceNr(int sequenceNr) {
+        this.sequenceNr = sequenceNr;
+    }
+
+    /**
+     * Gets the time format for this action.
+     *
+     * @return The {@link TimeFormat} enum value.
+     */
+    public TimeFormat getTimeFormat() {
+        return timeFormat;
+    }
+
+    /**
+     * Sets the time format for this action.
+     *
+     * @param timeFormat The {@link TimeFormat} enum value to set.
+     */
+    public void setTimeFormat(TimeFormat timeFormat) {
+        this.timeFormat = timeFormat;
+    }
+
+    /**
+     * Gets the recurrence of the date time.
+     *
+     * @return The recurrence string following the Recurrence Rule specification.
+     */
+    public String getRecurrence() {
+        return recurrence;
+    }
+
+    /**
+     * Sets the recurrence of the date time.
+     *
+     * @param recurrence The recurrence string to set.
+     */
+    public void setRecurrence(String recurrence) {
+        this.recurrence = recurrence;
+    }
+
+    /**
+     * Gets the duration of this action/event.
+     *
+     * @return The duration string following the ISO 8601 specification.
+     */
+    public String getDuration() {
+        return duration;
+    }
+
+    /**
+     * Sets the duration of this action/event.
+     *
+     * @param duration The duration string to set.
+     */
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 }

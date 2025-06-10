@@ -9,14 +9,14 @@ public class StopAction extends Action {
     /**
      * The sequence number of this action within the entity it is taking place. Can be used to indicate order when no times are present
      */
-    private long sequenceNr;
+    private int sequenceNr;
 
     // Getter and setter
-    public long getSequenceNr() {
+    public int getSequenceNr() {
         return sequenceNr;
     }
 
-    public void setSequenceNr(long sequenceNr) {
+    public void setSequenceNr(int sequenceNr) {
         this.sequenceNr = sequenceNr;
     }
 }

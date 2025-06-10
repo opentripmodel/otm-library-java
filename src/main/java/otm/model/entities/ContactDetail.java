@@ -19,7 +19,10 @@ public class ContactDetail {
      */
     private String remark;
 
-//    todo missing property language
+    /**
+     * Language required for contacting. Must use ISO 639-3 codes (e.g., "eng" for English, "nld" for Dutch).
+     */
+    private String language;
 
     // Getters and setters
 
@@ -75,5 +78,23 @@ public class ContactDetail {
      */
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    /**
+     * Gets the contact language.
+     *
+     * @return The language code as a {@code String} (ISO 639-3).
+     */
+    public String getLanguage() {
+        return language;
+    }
+
+    /**
+     * Sets the contact language.
+     *
+     * @param language The language code to set as a {@code String} (ISO 639-3).
+     */
+    public void setLanguage(String language) {
+        this.language = language;
     }
 }

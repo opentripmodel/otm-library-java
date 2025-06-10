@@ -10,4 +10,3 @@ public enum ConstraintType {
     TIME_WINDOW_CONSTRAINT,
     VALUE_BOUND_CONSTRAINT
 }
-//Todo missing the following constraints -> endDateTimeConstraint, temperatureConstraint, sizeConstraint, weightConstraint, speedConstraint, accessConstraint, transportEquipmentTypeConstraint, sensorValueConstraint,emissionStandardConstraint,fuelTypeConstraint,vehicleTypeConstraint,routeEntityConstraint,routeConstraint,notConstraint,

@@ -6,9 +6,6 @@ import java.util.List;
  * Object describing a geographic location. A location can either be a point or an area.
  */
 public class Location extends OtmEntity {
-
-//    todo missing attribute -> subLocations
-
     /**
      * The type of location
      */
@@ -63,6 +60,13 @@ public class Location extends OtmEntity {
      * </p>
      */
     private InlineAssociationType<Constraint> constraint;
+
+    /**
+     * Sub-locations that can be identified on their own but are also part of this
+     * location. For example, a dock at a large distribution area. Sub-locations can also
+     * be seen as 'points of interest' on a larger location.
+     */
+    private List<InlineAssociationType<Location>> subLocations;
 
     // Getters and setters
 
@@ -244,5 +248,24 @@ public class Location extends OtmEntity {
      */
     public void setConstraint(InlineAssociationType<Constraint> constraint) {
         this.constraint = constraint;
+    }
+
+    /**
+     * Gets the list of sub-locations.
+     *
+     * @return A {@link List} of {@link InlineAssociationType} objects, where each association
+     * contains a {@link Location} representing a sub-location.
+     */
+    public List<InlineAssociationType<Location>> getSubLocations() {
+        return subLocations;
+    }
+
+    /**
+     * Sets the list of sub-locations.
+     *
+     * @param subLocations A {@link List} of {@link InlineAssociationType} objects to set as sub-locations.
+     */
+    public void setSubLocations(List<InlineAssociationType<Location>> subLocations) {
+        this.subLocations = subLocations;
     }
 }

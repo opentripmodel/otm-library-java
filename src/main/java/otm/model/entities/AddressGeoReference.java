@@ -1,7 +1,7 @@
 package otm.model.entities;
 
 /**
- * Describes a geographic reference, this is the primary way to link a {@code Location} entity to a physical, geographic location.
+ * Describes a geographic reference this is the primary way to link a {@code Location} entity to a physical, geographic location.
  */
 public class AddressGeoReference extends GeoReference {
 

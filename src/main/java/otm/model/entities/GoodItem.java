@@ -4,7 +4,7 @@ import java.util.List;
 
 public class GoodItem extends OtmEntity {
 
-//    todo missing attribute -> grossWeight, classificationLines
+
 
     private GoodItemType type;
 
@@ -27,6 +27,12 @@ public class GoodItem extends OtmEntity {
      * A quantity determines how many of a certain good you have. Note that all other measurements are measured for a <b>single</b> product, not for the total of products.
      */
     private double quantity;
+
+    /**
+     * The gross weight of a 'single' good. The total weight can be calculated
+     * by using the quantity and multiplying it with this weight.
+     */
+    private UnitWithValue grossWeight;
 
     /**
      * The net weight of a 'single' good, the total weight can be calculated by using the quantity and multiplying it with this weight.
@@ -64,13 +70,20 @@ public class GoodItem extends OtmEntity {
     private String packagingMaterial;
 
     /**
+     * Product classification information often required at customs. A single product
+     * can contain multiple classification lines. For example, whenever the product
+     * consists of multiple components, that can each be classified. The most important
+     * information in the classification lines is often the HS code.
+     */
+    private List<ClassificationLine> classificationLines;
+
+    /**
      * All parties associated with these goods, for example the consignor and consignee.
      */
     private List<InlineAssociationActorType> actors;
 
     /**
      * Associations actions
-     * todo property not in spec??
      */
     private List<InlineAssociationType<Action>> actions;
 
@@ -169,6 +182,24 @@ public class GoodItem extends OtmEntity {
      */
     public void setQuantity(double quantity) {
         this.quantity = quantity;
+    }
+
+    /**
+     * Gets the gross weight of a single good.
+     *
+     * @return The {@link UnitWithValue} representing the gross weight.
+     */
+    public UnitWithValue getGrossWeight() {
+        return grossWeight;
+    }
+
+    /**
+     * Sets the gross weight of a single good.
+     *
+     * @param grossWeight The {@link UnitWithValue} to set for the gross weight.
+     */
+    public void setGrossWeight(UnitWithValue grossWeight) {
+        this.grossWeight = grossWeight;
     }
 
     /**
@@ -295,6 +326,26 @@ public class GoodItem extends OtmEntity {
      */
     public void setPackagingMaterial(String packagingMaterial) {
         this.packagingMaterial = packagingMaterial;
+    }
+
+    /**
+     * Gets the list of product classification lines.
+     *
+     * @return A {@link List} of {@link ClassificationLine} objects, providing details
+     * for customs and product classification.
+     */
+    public List<ClassificationLine> getClassificationLines() {
+        return classificationLines;
+    }
+
+    /**
+     * Sets the list of product classification lines.
+     *
+     * @param classificationLines A {@link List} of {@link ClassificationLine} objects
+     * to set for product classification.
+     */
+    public void setClassificationLines(List<ClassificationLine> classificationLines) {
+        this.classificationLines = classificationLines;
     }
 
     /**
