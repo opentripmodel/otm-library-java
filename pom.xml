@@ -4,12 +4,35 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>zensoftware.nl</groupId>
+    <groupId>nl.zensoftware</groupId>
     <artifactId>OTM-Toolkit</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <name>OTM Toolkit</name>
     <description>The opensource OTM Toolkit for working with the OTM5 spec</description>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Paul Backs</name>
+            <email>paul.backs@zensoftware.nl</email>
+            <organization>ZenSoftware</organization>
+            <organizationUrl>https://www.zensoftware.cloud/</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:https://github.com/opentripmodel/OTM-library-Java.git</connection>
+        <developerConnection>scm:git:https://github.com/opentripmodel/OTM-library-Java.git</developerConnection>
+        <url>https://github.com/opentripmodel/OTM-library-Java</url>
+    </scm>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -33,4 +56,19 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                    <checkModificationExcludes>
+                        <checkModificationExclude>pom.xml</checkModificationExclude>
+                    </checkModificationExcludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
