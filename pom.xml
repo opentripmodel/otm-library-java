@@ -4,7 +4,7 @@
 
     <groupId>nl.zensoftware</groupId>
     <artifactId>OTM-Toolkit</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <name>OTM Toolkit</name>
     <description>The opensource OTM Toolkit for working with the OTM5 spec</description>
