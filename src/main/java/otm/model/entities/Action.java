@@ -8,7 +8,6 @@ import java.util.Objects;
  * <p>
  * Actions are dynamic entities that are able to couple together various static entities at a certain moment in time. For instance, a Load action couples together a Consignment and a Vehicle at the moment the Loading happens.
  * </p>
- * <p>
  * There are various types of Actions:
  * <ul>
  * <li>The Stop that models visiting a certain location at a certain time and potentially doing several other actions at that location.</li>
@@ -22,7 +21,6 @@ import java.util.Objects;
  * <li>The Wait action that models waiting at a particular location during the trip. This can be due to various circumstances such as waiting for the vehicle to be transported by a ferry or train. Or because of waiting at frontiers or docks (e.g., the dock of the loading/unload location is occupied) or traffic prohibitions. The driver is allowed to leave the vehicle during this period. An important aspect distinguishing this from the break action is that waiting times can be shortened because of changing circumstances. For example, if the original waiting time was expected to be 15 minutes because of an occupied dock, but the driver is 10 minutes late, the waiting time can be shortened to 5 minutes until the dock is free.</li>
  * <li>The GenericAction for whenever any of the above actions cannot model the situation appropriately.</li>
  * </ul>
- * </p>
  */
 public class Action extends OtmEntity {
     /**

@@ -4,9 +4,7 @@ package otm.model.entities;
  * <p>
  * Actions are {@code dynamic} entities that are able to couple together various {@code static} entities at a certain moment in time. For instance, a Load action couples together a Consignment and a Vehicle at the moment the Loading happens.
  * </p>
- * <p>
  * There are various types of Actions:
- *</p>
  * <ul>
  * <li>The <strong>Stop</strong> that models visiting a certain location at a certain time and potentially doing several other actions at that location.</li>
  * <li>The <strong>Load</strong> action, that models loading in one or multiple Consignments into a vehicle or some sort of container.</li>

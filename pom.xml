@@ -4,10 +4,22 @@
 
     <groupId>nl.zensoftware</groupId>
     <artifactId>OTM-Toolkit</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>${revision}</version>
 
     <name>OTM Toolkit</name>
     <description>The opensource OTM Toolkit for working with the OTM5 spec</description>
+    <url>https://otm5.opentripmodel.org/</url>
+
+    <properties>
+        <revision>0.0.2</revision>
+
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sonar.organization>opentripmodel</sonar.organization>
+        <sonar.projectKey>opentripmodel_OTM-library-Java</sonar.projectKey>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    </properties>
 
     <licenses>
         <license>
@@ -28,19 +40,10 @@
 
     <scm>
         <connection>scm:git:https://github.com/opentripmodel/OTM-library-Java.git</connection>
-        <developerConnection>scm:git:https://github.com/opentripmodel/OTM-library-Java.git</developerConnection>
+        <developerConnection>scm:git:ssh://github.com/opentripmodel/OTM-library-Java.git</developerConnection>
         <url>https://github.com/opentripmodel/OTM-library-Java</url>
-      <tag>1.0.0</tag>
-  </scm>
-
-    <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <sonar.organization>opentripmodel</sonar.organization>
-        <sonar.projectKey>opentripmodel_OTM-library-Java</sonar.projectKey>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-    </properties>
+        <tag>1.0.0</tag>
+    </scm>
 
     <dependencies>
         <dependency>
@@ -67,6 +70,63 @@
                         <checkModificationExclude>pom.xml</checkModificationExclude>
                     </checkModificationExcludes>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.7.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <autoPublish>true</autoPublish>
+                    <waitUntil>published</waitUntil>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.2.7</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                        <configuration>
+                            <keyname>${gpg.keyname}</keyname>
+                            <passphraseServerId>${gpg.keyname}</passphraseServerId>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.11.2</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.3.1</version> <executions>
+                <execution>
+                    <id>attach-sources</id>
+                    <goals>
+                        <goal>jar-no-fork</goal> </goals>
+                </execution>
+            </executions>
             </plugin>
         </plugins>
     </build>
