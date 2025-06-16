@@ -6,10 +6,6 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
-env:
-  MAVEN_GPG_PASSPHRASE: ${{ secrets.RELEASES_GPG_PASSPHRASE }}
-  MAVEN_GPG_KEY: ${{ secrets.RELEASES_GPG_PRIVATE_KEY }}
-
 jobs:
   sorarscan:
     name: Build and analyze the build using SonarQube
@@ -23,6 +19,8 @@ jobs:
         with:
           java-version: 21
           distribution: 'zulu'
+          gpg-private-key: ${{ secrets.RELEASES_GPG_PRIVATE_KEY }}
+          gpg-passphrase: ${{ secrets.RELEASES_GPG_PASSPHRASE }}
       - name: Cache SonarQube packages
         uses: actions/cache@v4
         with:
