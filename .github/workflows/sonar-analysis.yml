@@ -6,7 +6,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
-ENV:
+env:
   MAVEN_GPG_PASSPHRASE: ${{ secrets.RELEASES_GPG_PASSPHRASE }}
   MAVEN_GPG_KEY: ${{ secrets.RELEASES_GPG_PRIVATE_KEY }}
 
