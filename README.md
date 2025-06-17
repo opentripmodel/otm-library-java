@@ -122,6 +122,7 @@ We follow Semantic Versioning:
 
 # 🔁 Workflow Summary
 
+```mermaid
 graph LR
 A[main] --> B[feature/xyz]
 B --> C[Pull Request]
@@ -129,6 +130,7 @@ C --> D[CI & Review]
 D --> E[Merge to main]
 E --> F[CI: Test + Build + Release]
 F --> G[Tag + Publish to Maven Central]
-⸻
+```
+
 # 💬 Questions?
 Feel free to open a Discussion or Issue if you need help!
