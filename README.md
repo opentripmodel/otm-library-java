@@ -108,16 +108,20 @@ We prefer squash merges to keep a clean history.
 Merges to main can trigger a Maven release via GitHub Actions. This includes:
 * Running tests
 * Building the artifact
-* Publishing to Maven Central (via OSSRH)
+* Publishing to Maven Central
 * Creating a Git tag (v1.2.3)
 * Publishing release notes
 
 # 📌 Versioning
-
-We follow Semantic Versioning:
-* Breaking changes → MAJOR bump (e.g. 2.0.0)
-* New features → MINOR bump (e.g. 1.1.0)
-* Bug fixes → PATCH bump (e.g. 1.0.1)
+We use a form of Semantic Versioning (SemVer)with the change being that we incorporate the OTM schema version as the first two digits of the release.:
+```aiexclude
+OTM-MAJOR.OTM-MINOR.FEATURE.PATCH
+```
+| Change Type | Version Example | Description
+-- | --- | ---
+| Breaking changes | 5.6.0.0 → 5.7.0.0  | Incompatible API change
+| New features | 5.6.1.0 → 5.6.2.0 | Backwards-compatible enhancements (e.g., adding a new validator)
+| Bug fixes / patches | 5.6.2.0 → 5.6.2.1 | Backwards-compatible bug fix (e.g., fixing the new validator)
 
 
 # 🔁 Workflow Summary
