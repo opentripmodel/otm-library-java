@@ -93,30 +93,32 @@ F --> G[Tag + Publish to Maven Central]
 
 ```mermaid
 gitGraph
-	checkout main
-	commit id: "prev rel."
+    checkout main
+    commit id: "prev rel."
 
-	commit id: "create fix branch"
-	branch fix/ISSUE-2
-	commit id: "Fix work" tag: "create PR#1"
-	commit id: "Updates from Pull Request #1"
-	checkout main
-	merge fix/ISSUE-2 tag: "close branch"
+    commit id: "create fix branch"
+    branch fix/ISSUE-2
+    commit id: "Fix work" tag: "create PR#1"
+    commit id: "Updates from Pull Request #1"
+    checkout main
+    merge fix/ISSUE-2 tag: "close branch"
 
-	checkout main
-	commit id: "create feature branch"
-	branch feature/ISSUE-1
-	commit id: "Feature work" tag: "create PR#2"
-	commit id: "Updates from Pull Request #2"
-	checkout main
-	merge feature/ISSUE-1  tag: "close branch"
+    checkout main
+    commit id: "create feature branch"
+    branch feature/ISSUE-1
+    commit id: "Feature work" tag: "create PR#2"
+    commit id: "Updates from Pull Request #2"
+    checkout main
+    merge feature/ISSUE-1  tag: "close branch"
 
 
-	commit id: "create release branch"
-	branch release-1.2.3.4
-	checkout release-1.2.3.4
-	commit id: "mvn release:prepare" tag: "tag: v1.2.3.4 -Triggers Maven Central Upload-"
-	
+    commit id: "create release branch"
+    branch release-1.2.3.4
+    checkout release-1.2.3.4
+    commit id: "mvn release:prepare" tag: "tag: v1.2.3.4 -Triggers Maven Central Upload for v1.2.3.4-"
+    commit id: "create PR#3"
+    checkout main
+    merge release-1.2.3.4 tag: "1.2.3.5-SNAPSHOT ready to be developed on"
 ```
 
 
