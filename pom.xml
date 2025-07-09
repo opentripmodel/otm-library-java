@@ -41,7 +41,6 @@
         <connection>scm:git:https://github.com/opentripmodel/otm-library-java.git</connection>
         <developerConnection>scm:git:git@github.com:opentripmodel/otm-library-java.git</developerConnection>
         <url>https://github.com/opentripmodel/otm-library-java</url>
-        <tag>HEAD</tag>
     </scm>
 
     <dependencies>
