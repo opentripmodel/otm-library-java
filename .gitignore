@@ -37,3 +37,8 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Maven Release Plugin ###
+pom.xml.releaseBackup
+release.properties
+

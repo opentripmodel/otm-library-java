@@ -76,65 +76,135 @@ For any questions or support, please contact us at [your email address] or visit
 
 # 🤝 Contributing
 We welcome contributions to the OTM Java library! If you have suggestions, bug reports, or feature requests, please open an issue on our GitHub repository. Pull requests are also welcome.  We follow a simple and contributor-friendly Git branching model, along with automated Maven releases. Please read below before submitting code.
+This project follows a lightweight branching strategy based on GitHub Flow, with short-lived branches for features and fixes, and a dedicated release branch for tagging and deploying stable versions. All code changes go through pull requests and are merged into the main branch, which is always production-ready. Releases are triggered automatically through GitHub Actions when a release-* branch is prepared, ensuring clean versioning and reliable publishing to Maven Central.
 
-# 🌿 Branching Model
+## 🔁 Workflow Summary High-Level Overview
 
-We follow a simplified GitHub Flow:
+```mermaid  
+graph LR  
+A[main] --> B[feature/xyz]  
+B --> C[Pull Request]  
+C --> D[CI & Review]  
+D --> E[Merge to main]  
+E --> F[CI: Test + Build + Release]  
+F --> G[Tag + Publish to Maven Central]  
 ```
-main: Always stable and ready for release. Every merge may trigger a Maven release.
-feature/*: Used for new functionality.
-fix/*: Used for bug fixes.
-chore/*: Used for tooling and non-functional changes.
+## Git Branching Model
+
+```mermaid
+gitGraph
+    checkout main
+    commit id: "prev rel."
+
+    commit id: "create fix branch"
+    branch fix/ISSUE-2
+    commit id: "Fix work" tag: "create PR#1"
+    commit id: "Updates from Pull Request #1"
+    checkout main
+    merge fix/ISSUE-2 tag: "close branch"
+
+    checkout main
+    commit id: "create feature branch"
+    branch feature/ISSUE-1
+    commit id: "Feature work" tag: "create PR#2"
+    commit id: "Updates from Pull Request #2"
+    checkout main
+    merge feature/ISSUE-1  tag: "close branch"
+
+
+    commit id: "create release branch"
+    branch release-1.2.3.4
+    checkout release-1.2.3.4
+    commit id: "mvn release:prepare" tag: "tag: v1.2.3.4 -Triggers Maven Central Upload for v1.2.3.4-"
+    commit id: "create PR#3"
+    checkout main
+    merge release-1.2.3.4 tag: "1.2.3.5-SNAPSHOT ready to be developed on"
 ```
 
-You can branch directly off main.
+
+# 🚦 Branching Model
+
+We follow a work flow best described as **GitHub Flow + release branches for tagging and Artifact deployment (i.e: Maven Central)**
+```  
+main: Always stable and ready for release.  
+Every merge to main should be production-ready.  
+
+feature/*: Short-lived branches for new functionality.  
+fix/*: Short-lived branches for bug fixes.  
+chore/*: Short-lived branches for non-functional changes (tooling, docs, etc.).  
+release-*: Temporary branch used to prepare and tag a new release.  
+```  
+
+All branches are created directly from `main`.
 
 # 🔀 Pull Requests
 
-All code changes must go through a Pull Request (PR). Here’s how:
-1.	Fork the repository
-2.	Create a feature branch:
+All code changes must go through a Pull Request (PR). Here’s the workflow:
+1.  Fork the repository (if external contributor)
+2.  Create a short-lived working branch:
+    - For features:
+      ```  
+      git checkout -b feature/your-feature-name  
+      ```  
+    - For fixes:
+      ```  
+      git checkout -b fix/your-bugfix-description  
+      ```  
+3.  Commit your changes with clear, atomic messages
+4.  Open a PR against `main`
+5.  Ensure all checks (tests, formatting, linting) pass
+
+✅ We prefer **squash merges** to keep the history clean.  
+🔁 Branches should be **deleted after merge**.
+
+# 🚀 Releasing
+
+Releases are prepared from a dedicated `release-*` branch.
+
+
+1. After all required changes are merged into `main`, create a release branch:
 ```
-git checkout -b feature/your-feature-name
+git checkout main
+git pull origin main
+git checkout -b release-1.0.1.0
+# push the branch, so the PR can be used to get the next -SNAPSHOT version available
+# git push origin release-1.0.1.0
+# howver, the maven release plugin does this for you so this step is optional (see next step)
 ```
-3.	Commit your changes with clear messages
-4.	Open a PR against main
-5.	Make sure all checks (tests, formatting, etc.) pass
 
-We prefer squash merges to keep a clean history.
+2. Run the release preparation step, typically:
+   ```  
+   mvn release:clean release:prepare  
+   ```  
+   This triggers:
+    * Runs a local maven build with tests but does **not** deploy to maven central
+    * Updates the version number in the pom.xml from 1.0.1.0-SNAPSHOT to 1.0.1.0
+    * commits the pom.xml to the branch
+    *  Creates the tag `v1.0.1.0` and pushes this to github
+    *  updates the pom.xml again to 1.0.1.1-SNAPSHOT and commits the pom.xml to the release branch
+3. Create a pull request to merge the updated pom.xml to main (After release, the `release-*` branch may be deleted)
 
-# 🚀 Releasing (Automated)
+The tag creation triggers a Github Action that runs this action
+```
+mvn release:perform 
+```
+This will do the signing of the artifacts and upload the jar file to maven central
 
-Merges to main can trigger a Maven release via GitHub Actions. This includes:
-* Running tests
-* Building the artifact
-* Publishing to Maven Central
-* Creating a Git tag (v1.2.3)
-* Publishing release notes
 
 # 📌 Versioning
-We use a form of Semantic Versioning (SemVer)with the change being that we incorporate the OTM schema version as the first two digits of the release.:
-```aiexclude
-OTM-MAJOR.OTM-MINOR.FEATURE.PATCH
-```
-| Change Type | Version Example | Description
--- | --- | ---
-| Breaking changes | 5.6.0.0 → 5.7.0.0  | Incompatible API change
-| New features | 5.6.1.0 → 5.6.2.0 | Backwards-compatible enhancements (e.g., adding a new validator)
-| Bug fixes / patches | 5.6.2.0 → 5.6.2.1 | Backwards-compatible bug fix (e.g., fixing the new validator)
 
+We use a modified Semantic Versioning format to reflect the OTM schema version in the first two segments:
 
-# 🔁 Workflow Summary
+```  
+OTM-MAJOR.OTM-MINOR.FEATURE.PATCH  
+```  
+## Examples:
 
-```mermaid
-graph LR
-A[main] --> B[feature/xyz]
-B --> C[Pull Request]
-C --> D[CI & Review]
-D --> E[Merge to main]
-E --> F[CI: Test + Build + Release]
-F --> G[Tag + Publish to Maven Central]
-```
+| Change Type         | Version Example   | Description                                                      |
+| ------------------- | ----------------- | ---------------------------------------------------------------- |
+| Breaking changes    | 5.6.0.0 → 5.7.0.0 | Incompatible API change                                          |
+| New features        | 5.6.1.0 → 5.6.2.0 | Backwards-compatible enhancements (e.g., adding a new validator) |
+| Bug fixes / patches | 5.6.2.0 → 5.6.2.1 | Backwards-compatible bug fix (e.g., fixing the new validator)    |
 
 # 💬 Questions?
 Feel free to open a Discussion or Issue if you need help!
