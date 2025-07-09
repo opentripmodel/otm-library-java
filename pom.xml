@@ -38,10 +38,10 @@
     </developers>
 
     <scm>
-        <connection>scm:git:https://github.com/opentripmodel/OTM-library-Java.git</connection>
-        <developerConnection>scm:git:ssh://github.com/opentripmodel/OTM-library-Java.git</developerConnection>
-        <url>https://github.com/opentripmodel/OTM-library-Java</url>
-        <tag>1.0.0</tag>
+        <connection>scm:git:https://github.com/opentripmodel/otm-library-java.git</connection>
+        <developerConnection>scm:git:git@github.com:opentripmodel/otm-library-java.git</developerConnection>
+        <url>https://github.com/opentripmodel/otm-library-java</url>
+        <tag>HEAD</tag>
     </scm>
 
     <dependencies>
