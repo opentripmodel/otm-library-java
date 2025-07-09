@@ -78,7 +78,7 @@ For any questions or support, please contact us at [your email address] or visit
 We welcome contributions to the OTM Java library! If you have suggestions, bug reports, or feature requests, please open an issue on our GitHub repository. Pull requests are also welcome.  We follow a simple and contributor-friendly Git branching model, along with automated Maven releases. Please read below before submitting code.
 This project follows a lightweight branching strategy based on GitHub Flow, with short-lived branches for features and fixes, and a dedicated release branch for tagging and deploying stable versions. All code changes go through pull requests and are merged into the main branch, which is always production-ready. Releases are triggered automatically through GitHub Actions when a release-* branch is prepared, ensuring clean versioning and reliable publishing to Maven Central.
 
-## 🔁 Workflow Summary
+## 🔁 Workflow Summary High-Level Overview
 
 ```mermaid  
 graph LR  
@@ -89,7 +89,7 @@ D --> E[Merge to main]
 E --> F[CI: Test + Build + Release]  
 F --> G[Tag + Publish to Maven Central]  
 ```
-
+## Git Branching Model
 
 ```mermaid
 gitGraph
@@ -115,7 +115,8 @@ gitGraph
 	commit id: "create release branch"
 	branch release-1.2.3.4
 	checkout release-1.2.3.4
-	commit id: "mvn release:prepare" tag: "tag: v1.2.3.4 (Triggers Maven Central Upload)" 
+	commit id: "mvn release:prepare" tag: "tag: v1.2.3.4 -Triggers Maven Central Upload-"
+	
 ```
 
 
@@ -171,7 +172,7 @@ git checkout -b release-1.0.1.0
 
 2. Run the release preparation step, typically:
    ```  
-   mvn release:prepare  
+   mvn release:clean release:prepare  
    ```  
    This triggers:
     * Runs a local maven build with tests but does **not** deploy to maven central
