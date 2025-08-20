@@ -1,7 +1,9 @@
 package otm.model.entities;
 
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
+@JsonTypeName("latLonArray")
 public class LatLonArrayGeoReference extends GeoReference {
 
     @Override

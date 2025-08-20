@@ -2,11 +2,20 @@ package otm.model.entities;
 
 public class InlineAssociationType<T> {
 
+    public InlineAssociationType(T actorLocation) {
+        this.entity = actorLocation;
+    }
+    public InlineAssociationType() {
+
+    }
+
+    private final AssociationType associationType = AssociationType.INLINE;
+
     /**
      * Type of association
      */
     public AssociationType getAssociationType() {
-        return AssociationType.INLINE;
+        return associationType;
     }
 
     /**

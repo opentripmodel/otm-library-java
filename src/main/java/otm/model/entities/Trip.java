@@ -24,7 +24,7 @@ public class Trip extends OtmEntity {
     /**
      * The actors associated with this trip, for instance the client or the executing party
      */
-    private InlineAssociationType<Actor>[] actors;
+    private InlineAssociationActorType[] actors;
 
     /**
      * All actions that are/were happening on this trip, such as stopping at certain locations and loading and unloading of consignments.
@@ -35,6 +35,8 @@ public class Trip extends OtmEntity {
      * Constraints this trip has to abide to, such as the start and end date times in which it has to be completed.
      */
     private InlineAssociationType<Constraint>[] constraints;
+
+    private EntityType entityType;
 
     // Getters and setters
 
@@ -97,7 +99,7 @@ public class Trip extends OtmEntity {
      *
      * @return The array of actors.
      */
-    public InlineAssociationType<Actor>[] getActors() {
+    public InlineAssociationActorType[] getActors() {
         return actors;
     }
 
@@ -106,7 +108,7 @@ public class Trip extends OtmEntity {
      *
      * @param actors The array of actors to set.
      */
-    public void setActors(InlineAssociationType<Actor>[] actors) {
+    public void setActors(InlineAssociationActorType[] actors) {
         this.actors = actors;
     }
 
@@ -144,5 +146,13 @@ public class Trip extends OtmEntity {
      */
     public void setConstraints(InlineAssociationType<Constraint>[] constraints) {
         this.constraints = constraints;
+    }
+
+    public EntityType getEntityType(){
+        return entityType;
+    }
+
+    public void setEntityType(EntityType entityType){
+        this.entityType = entityType;
     }
 }
