@@ -30,8 +30,6 @@ public class CbsProfileValidator implements IProfileValidator<Trip> { // Using p
 
         ValidationResult validationResult = CbsProfileEvaluationResultsMapper.map(cbsSchema, validationMessages);
 
-//        System.out.println("Validation result: " + validationResult);
-
         return validationResult;
     }
 }

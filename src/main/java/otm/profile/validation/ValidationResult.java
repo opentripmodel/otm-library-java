@@ -27,6 +27,8 @@ public class ValidationResult {
 
         StringBuilder sb = new StringBuilder();
 
+        sb.append("Validation failed (").append(messages.size()).append(" errors): \n");
+
         messages.sort(Comparator.comparing(ValidationMessage::getSeverity));
         for(ValidationMessage msg : messages){
             sb.append("[")

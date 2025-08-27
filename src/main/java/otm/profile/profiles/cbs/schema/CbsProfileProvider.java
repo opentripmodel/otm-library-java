@@ -27,8 +27,6 @@ public class CbsProfileProvider {
                 throw new IOException("File CbsSchema not found in resources!");
             }
             schema = (ObjectNode) yamlMapper.readTree(inputStream);
-
-//            System.out.println("Loaded YAML schema: " + schema.toString());
         }
 
         JsonSchemaFactory factory = JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V202012);
@@ -75,45 +73,8 @@ public class CbsProfileProvider {
         ObjectNode entitySchemaProperties = (ObjectNode) entitySchema.get("properties");
         entitySchemaProperties.set("locations", newLocationsRef);
 
-        // Tweak 3: /actors/items/properties/entity/properties/contactDetails/items/properties/type
-//        ObjectNode contactDetailsProp = (ObjectNode) entityProps.get("properties").get("contactDetails");
-//        ObjectNode contactDetailsItem = (ObjectNode) contactDetailsProp.get("items");
-//        ObjectNode contactTypeSchema = (ObjectNode) contactDetailsItem.get("properties").get("type");
-
-//        // Clear existing enumeration
-//        ArrayNode enumNode = (ArrayNode) contactTypeSchema.get("enum");
-//        if (enumNode != null) {
-//            enumNode.removeAll();
-//        } else {
-//            // If enum doesn't exist, create it
-//            enumNode = mapper.createArrayNode();
-//            contactTypeSchema.set("enum", enumNode);
-//        }
-//
-//        // Fill in enum with proper string values
-//        for (ContactDetailType type : ContactDetailType.values()) {
-//            String name = type.name();
-//            // "MOBILE_PHONE" -> "mobilePhone"
-//            String camel = Character.toLowerCase(name.charAt(0)) + name.substring(1);
-//            enumNode.add(camel);
-//        }
-
         JsonSchema finalSchema = factory.getSchema(schema);
-
-//        System.out.printf("Final CbsSchema: %s", finalSchema.toString());
 
         return finalSchema;
     }
-
-//    private static ObjectNode loadYamlAsJsonNode() {
-//        // Create a YAML mapper
-//        ObjectMapper yamlMapper = new YAMLMapper();
-//
-//        // Read the YAML file and convert it to a JsonNode
-//        try {
-//            return (ObjectNode) yamlMapper.readTree(new File("CbsSchema"));
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 }

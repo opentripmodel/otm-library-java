@@ -16,14 +16,6 @@ public class CbsProfileEvaluationResultsMapper {
         // Collect error messages
         List<otm.profile.validation.ValidationMessage> messages = new ArrayList<>();
 
-//         Flatten the tree into a list
-//        validationMessages.toList();
-
-//        // Get all nodes that have errors
-//        List<EvaluationResults> errorNodes = validationMessages.getDetails().stream()
-//                .filter(EvaluationResults::hasErrors)
-//                .toList();
-
         for (ValidationMessage validationMessage : validationMessages) {
             messages.add(new otm.profile.validation.ValidationMessage(
                 Severity.ERROR, // everything from JSON Schema is an error
@@ -32,27 +24,6 @@ public class CbsProfileEvaluationResultsMapper {
                 ValidationCode.Required
             ));
         }
-//
-//        for (EvaluationResults errorNode : errorNodes) {
-//            for (String keyword : errorNode.getErrors().keySet()) {
-//                // Get the validation code from the keyword
-//                String code = JsonSchemaKeywordValidationCodeMap.getCode(keyword);
-//
-//                // Get the instance location as a string
-//                String instance = errorNode.getInstanceLocation().toString();
-//
-//                // Get the error message text
-//                String text = ValidationMessageResolver.getMessage(schema, errorNode, code, errorNode.getErrors().get(keyword), instance);
-//
-//                // Create and add the validation message
-//                ValidationMessage message = new ValidationMessage();
-//                message.setSeverity(Severity.Error); // All JSON schema issues are errors
-//                message.setPath(instance);
-//                message.setCode(code);
-//                message.setMessage(text);
-//                messages.add(message);
-//            }
-//        }
 
         return new ValidationResult(messages.toArray(new otm.profile.validation.ValidationMessage[0]));
     }

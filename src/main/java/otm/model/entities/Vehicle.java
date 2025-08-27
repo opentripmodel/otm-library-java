@@ -67,7 +67,7 @@ public class Vehicle extends OtmEntity {
     /**
      * The license plate of the vehicle.
      */
-    private String licencePlate;
+    private String licensePlate;
 
     /**
      * The weight of the Vehicle when empty.
@@ -279,17 +279,17 @@ public class Vehicle extends OtmEntity {
      *
      * @return The license plate.
      */
-    public String getLicencePlate() {
-        return licencePlate;
+    public String getLicensePlate() {
+        return licensePlate;
     }
 
     /**
      * Sets the license plate of the vehicle.
      *
-     * @param licencePlate The license plate to set.
+     * @param licensePlate The license plate to set.
      */
-    public void setLicencePlate(String licencePlate) {
-        this.licencePlate = licencePlate;
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
     }
 
     /**

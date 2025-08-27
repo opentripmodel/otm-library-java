@@ -13,4 +13,3 @@ public enum TripStatus {
     IN_TRANSIT,
     COMPLETED
 }
-

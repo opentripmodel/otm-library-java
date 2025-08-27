@@ -1,9 +1,5 @@
 package otm.model.entities;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-//import com.google.common.base.CaseFormat;
-
-
 public enum EntityType {
     GENERIC_ACTION,
     WAIT,
@@ -26,13 +22,5 @@ public enum EntityType {
     LOCATION,
     ROUTE,
     SENSOR,
-    TRIP;
-
-    @JsonValue
-    public String toCamelCase() {
-        System.out.println("test");
-//        return "test";
-//        return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, this.name());
-        return com.google.common.base.CaseFormat.UPPER_UNDERSCORE.to(com.google.common.base.CaseFormat.LOWER_CAMEL, this.name());
-    }
+    TRIP
 }

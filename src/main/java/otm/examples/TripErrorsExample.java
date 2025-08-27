@@ -1,17 +1,13 @@
 package otm.examples;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import otm.model.entities.*;
 import otm.profile.profiles.cbs.CbsProfileValidator;
-import otm.profile.profiles.cbs.schema.CbsProfileProvider;
 import otm.profile.validation.ValidationResult;
 import otm.serializer.IOtmSerializer;
 import otm.serializer.OtmSerializer;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -20,7 +16,9 @@ import java.util.List;
 import java.util.UUID;
 
 
-
+/**
+ * Example of how to use the OTM validator.
+ */
 public class TripErrorsExample {
     public static void main(String[] args) throws IOException {
 
@@ -32,7 +30,7 @@ public class TripErrorsExample {
         trip.setEntityType(EntityType.TRIP);
         trip.setName("Trip with errors");
 
-        // Vehicle object creation
+        // Vehicle object creation, but we forget to set the vehicle
         InlineAssociationType<Vehicle> vehicleAssociation = new InlineAssociationType<>();
         // Vehicle vehicle = new Vehicle();
         // vehicle.setId(UUID.randomUUID());
@@ -63,11 +61,11 @@ public class TripErrorsExample {
         InlineAssociationType<Location> locationAssociation = new InlineAssociationType<>();
         Location location = new Location();
         AddressGeoReference addressGeoReference = new AddressGeoReference();
-//        addressGeoReference.setStreet("Prinsengracht");
-//        addressGeoReference.setHouseNumber("263");
-//        addressGeoReference.setPostalCode("1016 XP");
-//        addressGeoReference.setCity("Amsterdam");
-//        addressGeoReference.setCountry("NL");
+        addressGeoReference.setStreet("Prinsengracht");
+        addressGeoReference.setHouseNumber("263");
+        addressGeoReference.setPostalCode("1016 XP");
+        addressGeoReference.setCity("Amsterdam");
+        addressGeoReference.setCountry("NL");
         location.setGeoReference(addressGeoReference);
         locationAssociation.setEntity(location);
         locations.add(locationAssociation);
@@ -89,7 +87,6 @@ public class TripErrorsExample {
         Location stopLocation = new Location();
         stopLocation.setName("Warehouse Amsterdam");
         stopLocation.setType(LocationType.CUSTOMER);
-        // GeoReference commented out in C#
         stopLocationAssociation.setEntity(stopLocation);
         stopAction.setLocation(stopLocationAssociation);
         stopActionAssociation.setEntity(stopAction);
@@ -101,7 +98,7 @@ public class TripErrorsExample {
         IOtmSerializer serializer = new OtmSerializer();
         String json = serializer.serialize(trip);
         System.out.println("Serialized JSON:\n" + json);
-
+        // Optional: deserialize trip
         Trip tripFromString = serializer.deserialize(json, Trip.class);
         System.out.println("\nDeserialized from string: Trip ID = " + tripFromString.getId());
 
@@ -121,29 +118,45 @@ public class TripErrorsExample {
         CbsProfileValidator cbsProfileValidator = new CbsProfileValidator();
         ValidationResult validationResult = cbsProfileValidator.validate(trip);
 
-//        System.out.println("pre validate");
-
         // Pretty-print validation errors
         System.out.println(validationResult.toString());
 
-//        System.out.println("post validate");
+        // Check if we are valid
+        if(validationResult.isValid()){
+            System.out.println("Validation succeeded (0 errors)");
+            return;
+        }
 
-        // Fix Errors
-        // C#'s fluent dot-chaining is mirrored in Java.
-        trip.getVehicle().getEntity().setLicencePlate("NL-01-AB");
+        System.out.println("Fixing errors...");
 
+        // Fix Vehicle error
+        Vehicle newVehicle = new Vehicle();
+        newVehicle.setId(String.valueOf(UUID.randomUUID()));
+        newVehicle.setVehicleType("truck");
+        newVehicle.setAverageFuelConsumption(UnitWithValue.create(32.5, "l/100km"));
+        trip.getVehicle().setEntity(newVehicle);
+
+        // Fix Actor errors
         trip.getActors()[0].getEntity().setName("Logistics BV");
-
         trip.getActions()[0].getEntity().setStartTime(Date.from(Instant.now().plus(5, ChronoUnit.MINUTES)));
 
-        // Type checking and casting
-        // C#'s "is" operator with pattern matching is done with "instanceof" and a cast in Java.
-        GeoReference geoRef = trip.getActors()[0].getEntity().getLocations().get(0).getEntity().getGeoReference();
-        if (geoRef instanceof AddressGeoReference address) {
-            address.setStreet("Prinsengracht");
-            address.setHouseNumber("263");
-            address.setCity("Amsterdam");
-            address.setCountry("NL");
-        }
+        trip.setName("");
+
+        System.out.println("Revalidating...");
+
+        // Revalidate the trip
+        validationResult = cbsProfileValidator.validate(trip);
+
+        System.out.println(validationResult.toString());
+
+        System.out.println("Still forgot to fix all errors");
+
+        // Still forgot to resolve some parts of the error
+        trip.getVehicle().getEntity().setLicensePlate("NL-01-AB");
+
+        // Revalidate the trip
+        validationResult = cbsProfileValidator.validate(trip);
+
+        System.out.println(validationResult.toString());
     }
 }

@@ -1,5 +1,7 @@
 package otm.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -58,11 +60,13 @@ public class Action extends OtmEntity {
     /**
      * The time at which the action starts
      */
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Date startTime;
 
     /**
      * The time at which the action is completed
      */
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Date endTime;
 
     /**

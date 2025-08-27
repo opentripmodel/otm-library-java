@@ -12,8 +12,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 )
 @JsonSubTypes({
         @JsonSubTypes.Type(value = AddressGeoReference.class, name = "ADDRESS_GEO_REFERENCE"),
+        @JsonSubTypes.Type(value = AddressGeoReference.class, name = "addressGeoReference"),
         @JsonSubTypes.Type(value = LatLonPointGeoReference.class, name = "LAT_LON_POINT_GEO_REFERENCE"),
-        @JsonSubTypes.Type(value = LatLonArrayGeoReference.class, name = "LAT_LON_ARRAY_GEO_REFERENCE")
+        @JsonSubTypes.Type(value = LatLonPointGeoReference.class, name = "latLonPointGeoReference"),
+        @JsonSubTypes.Type(value = LatLonArrayGeoReference.class, name = "LAT_LON_ARRAY_GEO_REFERENCE"),
+        @JsonSubTypes.Type(value = LatLonArrayGeoReference.class, name = "latLonArrayGeoReference"),
 })
 public abstract class GeoReference {
     public abstract GeoReferenceType getType();
