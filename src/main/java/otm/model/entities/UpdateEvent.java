@@ -40,4 +40,12 @@ public abstract class UpdateEvent extends OtmEntity {
     public void setActors(List<InlineAssociationActorType> actors) {
         this.actors = actors;
     }
+
+    @Override
+    public String toString() {
+        return "UpdateEvent{" +
+                "lifecycle=" + lifecycle +
+                ", actors=" + actors +
+                '}';
+    }
 }

@@ -20,4 +20,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 public abstract class GeoReference {
     public abstract GeoReferenceType getType();
+
+    @Override
+    public String toString() {
+        return "GeoReference{" +
+                "type=" + getType() +
+                '}';
+    }
 }

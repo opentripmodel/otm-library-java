@@ -424,4 +424,25 @@ public class Action extends OtmEntity {
     public void setDuration(String duration) {
         this.duration = duration;
     }
+
+    @Override
+    public String toString() {
+        return "Action{" +
+                "actionType=" + actionType +
+                ", lifecycle=" + lifecycle +
+                ", remark='" + remark + '\'' +
+                ", stop=" + stop +
+                ", consignment=" + consignment +
+                ", location=" + location +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", actions=" + actions +
+                ", constraint=" + constraint +
+                ", result=" + result +
+                ", sequenceNr=" + sequenceNr +
+                ", timeFormat=" + timeFormat +
+                ", recurrence='" + recurrence + '\'' +
+                ", duration='" + duration + '\'' +
+                '}';
+    }
 }

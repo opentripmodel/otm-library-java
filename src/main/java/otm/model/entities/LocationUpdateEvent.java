@@ -28,4 +28,12 @@ public class LocationUpdateEvent extends UpdateEvent {
     public void setGeoReference(LatLonPointGeoReference geoReference) {
         this.geoReference = geoReference;
     }
+
+    @Override
+    public String toString() {
+        return "LocationUpdateEvent{" +
+                "vehicle=" + vehicle +
+                ", geoReference=" + geoReference +
+                '}';
+    }
 }

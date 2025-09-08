@@ -391,4 +391,27 @@ public class GoodItem extends OtmEntity {
     public void setConstraint(InlineAssociationType<Constraint> constraint) {
         this.constraint = constraint;
     }
+
+    @Override
+    public String toString() {
+        return "GoodItem{" +
+                "type=" + type +
+                ", description='" + description + '\'' +
+                ", remark='" + remark + '\'' +
+                ", barCode='" + barCode + '\'' +
+                ", quantity=" + quantity +
+                ", grossWeight=" + grossWeight +
+                ", weight=" + weight +
+                ", width=" + width +
+                ", height=" + height +
+                ", length=" + length +
+                ", adr=" + adr +
+                ", productType='" + productType + '\'' +
+                ", packagingMaterial='" + packagingMaterial + '\'' +
+                ", classificationLines=" + classificationLines +
+                ", actors=" + actors +
+                ", actions=" + actions +
+                ", constraint=" + constraint +
+                '}';
+    }
 }

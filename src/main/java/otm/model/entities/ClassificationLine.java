@@ -219,4 +219,19 @@ public class ClassificationLine {
     public void setOthers(List<ClassificationField> others) {
         this.others = others;
     }
+
+    @Override
+    public String toString() {
+        return "ClassificationLine{" +
+                "hsCode='" + hsCode + '\'' +
+                ", description='" + description + '\'' +
+                ", quantity=" + quantity +
+                ", weight=" + weight +
+                ", grossWeight=" + grossWeight +
+                ", width=" + width +
+                ", height=" + height +
+                ", length=" + length +
+                ", others=" + others +
+                '}';
+    }
 }

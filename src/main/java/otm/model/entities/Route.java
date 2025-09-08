@@ -99,4 +99,14 @@ public class Route extends OtmEntity {
     public void setConstraint(InlineAssociationType<Constraint> constraint) {
         this.constraint = constraint;
     }
+
+    @Override
+    public String toString() {
+        return "Route{" +
+                "geoReferences=" + geoReferences +
+                ", actors=" + actors +
+                ", actions=" + actions +
+                ", constraint=" + constraint +
+                '}';
+    }
 }

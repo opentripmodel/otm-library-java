@@ -268,4 +268,21 @@ public class Location extends OtmEntity {
     public void setSubLocations(List<InlineAssociationType<Location>> subLocations) {
         this.subLocations = subLocations;
     }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "type=" + type +
+                ", geoReference=" + geoReference +
+                ", unCode='" + unCode + '\'' +
+                ", gln='" + gln + '\'' +
+                ", administrativeReference=" + administrativeReference +
+                ", contactDetails=" + contactDetails +
+                ", remark='" + remark + '\'' +
+                ", actors=" + actors +
+                ", actions=" + actions +
+                ", constraint=" + constraint +
+                ", subLocations=" + subLocations +
+                '}';
+    }
 }

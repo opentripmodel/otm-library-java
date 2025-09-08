@@ -91,4 +91,14 @@ public class Sensor {
     public void setConstraint(InlineAssociationType<Constraint> constraint) {
         this.constraint = constraint;
     }
+
+    @Override
+    public String toString() {
+        return "Sensor{" +
+                "placement='" + placement + '\'' +
+                ", sensorType='" + sensorType + '\'' +
+                ", actors=" + actors +
+                ", constraint=" + constraint +
+                '}';
+    }
 }

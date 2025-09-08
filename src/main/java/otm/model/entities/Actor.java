@@ -48,4 +48,12 @@ public class Actor extends OtmEntity {
     public void setLocations(List<InlineAssociationType<Location>> locations) {
         this.locations = locations;
     }
+
+    @Override
+    public String toString() {
+        return "Actor{" +
+                "contactDetails=" + contactDetails +
+                ", locations=" + locations +
+                '}';
+    }
 }

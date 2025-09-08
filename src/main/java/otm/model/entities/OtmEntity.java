@@ -153,4 +153,16 @@ public abstract class OtmEntity {
     public void setEvents(List<Event> events){
         this.contextEvents = events;
     }
+
+    @Override
+    public String toString() {
+        return "OtmEntity{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", externalAttributes=" + externalAttributes +
+                ", creationDate=" + creationDate +
+                ", lastModified=" + lastModified +
+                ", contextEvents=" + contextEvents +
+                '}';
+    }
 }

@@ -317,4 +317,25 @@ public class Adr {
     public void setTransportCategory(Optional<TransportCategory> transportCategory) {
         this.transportCategory = transportCategory;
     }
+
+    @Override
+    public String toString() {
+        return "Adr{" +
+                "unNumber='" + unNumber + '\'' +
+                ", language='" + language + '\'' +
+                ", description='" + description + '\'' +
+                ", technicalName='" + technicalName + '\'' +
+                ", waste=" + waste +
+                ", environmentallyHazardous=" + environmentallyHazardous +
+                ", clazz='" + clazz + '\'' +
+                ", classificationCode='" + classificationCode + '\'' +
+                ", packagingGroup='" + packagingGroup + '\'' +
+                ", dangerLabels=" + dangerLabels +
+                ", dangerNumber='" + dangerNumber + '\'' +
+                ", tunnelCode='" + tunnelCode + '\'' +
+                ", specialProvisions='" + specialProvisions + '\'' +
+                ", points=" + points +
+                ", transportCategory=" + transportCategory +
+                '}';
+    }
 }

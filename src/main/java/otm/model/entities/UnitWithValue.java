@@ -52,6 +52,9 @@ public class UnitWithValue {
         this.unit = unit;
     }
 
+    public UnitWithValue(){
+    }
+
     // Getters and setters
 
     public String getUnit() {
@@ -68,6 +71,14 @@ public class UnitWithValue {
 
     public void setValue(Double value) {
         this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return "UnitWithValue{" +
+                "unit='" + unit + '\'' +
+                ", value=" + value +
+                '}';
     }
 
 }

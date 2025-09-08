@@ -62,4 +62,12 @@ public class Constraint extends OtmEntity {
     public void setEnforceability(Enforceability enforceability) {
         this.enforceability = enforceability;
     }
+
+    @Override
+    public String toString() {
+        return "Constraint{" +
+                "value=" + value +
+                ", enforceability=" + enforceability +
+                '}';
+    }
 }

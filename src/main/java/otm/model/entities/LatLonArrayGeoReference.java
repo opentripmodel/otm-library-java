@@ -33,4 +33,11 @@ public class LatLonArrayGeoReference extends GeoReference {
     public void setPoints(List<LatLonPointGeoReference> points) {
         this.points = points;
     }
+
+    @Override
+    public String toString() {
+        return "LatLonArrayGeoReference{" +
+                "points=" + points +
+                '}';
+    }
 }

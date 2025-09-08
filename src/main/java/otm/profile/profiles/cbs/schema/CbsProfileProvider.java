@@ -22,7 +22,7 @@ public class CbsProfileProvider {
         ObjectMapper yamlMapper = new YAMLMapper();
         ObjectNode schema;
 
-        try (InputStream inputStream = CbsProfileProvider.class.getClassLoader().getResourceAsStream("CbsSchema")) {
+        try (InputStream inputStream = CbsProfileProvider.class.getClassLoader().getResourceAsStream("CbsSchema_1.0.1")) {
             if (inputStream == null) {
                 throw new IOException("File CbsSchema not found in resources!");
             }
@@ -33,15 +33,6 @@ public class CbsProfileProvider {
 
         ObjectNode propertiesNode = (ObjectNode) schema.get("properties");
 
-        // Tweak 1: /vehicle
-        // Get the CbsSchema for the individual Vehicle item from the "items" property.
-        JsonNode vehicleObjectSchema = propertiesNode.get("vehicle").get("items");
-        // Remove the old "vehicle" property.
-        propertiesNode.remove("vehicle");
-        // Add the new "vehicle" property with the correct CbsSchema.
-        propertiesNode.set("vehicle", vehicleObjectSchema);
-
-        
         // Add a "definitions" node if it doesn't exist
         ObjectNode definitionsNode = (ObjectNode) schema.get("definitions");
         if (definitionsNode == null) {

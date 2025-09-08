@@ -1,5 +1,7 @@
 package otm.model.entities;
 
+import java.util.Arrays;
+
 /**
  * A Trip is an aggregate entity that combines various entities to model visiting various locations, potentially doing one or multiple actions on each location, such as loading or unloading consignments. It is optionally coupled to a {@link Vehicle} that is/was driving this trip.
  */
@@ -154,5 +156,18 @@ public class Trip extends OtmEntity {
 
     public void setEntityType(EntityType entityType){
         this.entityType = entityType;
+    }
+
+    @Override
+    public String toString() {
+        return "Trip{" +
+                "status=" + status +
+                ", transportMode=" + transportMode +
+                ", vehicle=" + vehicle +
+                ", actors=" + Arrays.toString(actors) +
+                ", actions=" + Arrays.toString(actions) +
+                ", constraints=" + Arrays.toString(constraints) +
+                ", entityType=" + entityType +
+                '}';
     }
 }

@@ -161,4 +161,18 @@ public class AddressGeoReference extends GeoReference {
     public void setCountry(String country) {
         this.country = country;
     }
+
+    @Override
+    public String toString() {
+        return "AddressGeoReference{" +
+                "type=" + type +
+                ", name='" + name + '\'' +
+                ", street='" + street + '\'' +
+                ", houseNumber='" + houseNumber + '\'' +
+                ", houseNumberAddition='" + houseNumberAddition + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                '}';
+    }
 }

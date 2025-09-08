@@ -1,5 +1,6 @@
 package otm.model.entities;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class GenericConstraint extends ConstraintValueBase {
@@ -30,6 +31,13 @@ public class GenericConstraint extends ConstraintValueBase {
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "GenericConstraint{" +
+                "description='" + description + '\'' +
+                '}';
     }
 }
 
@@ -62,6 +70,13 @@ class AndConstraint extends GenericConstraint {
     public void setAnd(ConstraintValueBase[] and) {
         this.and = and;
     }
+
+    @Override
+    public String toString() {
+        return "AndConstraint{" +
+                "and=" + Arrays.toString(and) +
+                '}';
+    }
 }
 
 class OrConstraint extends GenericConstraint {
@@ -84,6 +99,13 @@ class OrConstraint extends GenericConstraint {
 
     public void setOr(ConstraintValueBase[] or) {
         this.or = or;
+    }
+
+    @Override
+    public String toString() {
+        return "OrConstraint{" +
+                "or=" + Arrays.toString(or) +
+                '}';
     }
 }
 
@@ -140,6 +162,14 @@ class TimeWindowConstraint extends GenericConstraint {
      */
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
+    }
+
+    @Override
+    public String toString() {
+        return "TimeWindowConstraint{" +
+                "startTime=" + startTime +
+                ", endTime=" + endTime +
+                '}';
     }
 }
 
@@ -217,5 +247,15 @@ class ValueBoundConstraint extends GenericConstraint {
 
     public void setMinimum(UnitWithValue minimum) {
         this.minimum = minimum;
+    }
+
+    @Override
+    public String toString() {
+        return "ValueBoundConstraint{" +
+                "valueType=" + valueType +
+                ", constraintType=" + constraintType +
+                ", maximum=" + maximum +
+                ", minimum=" + minimum +
+                '}';
     }
 }

@@ -164,4 +164,17 @@ public class Document extends OtmEntity {
     public void setOwner(Actor owner) {
         this.owner = owner;
     }
+
+    @Override
+    public String toString() {
+        return "Document{" +
+                "content=" + content +
+                ", documentType='" + documentType + '\'' +
+                ", filename='" + filename + '\'' +
+                ", mimeType='" + mimeType + '\'' +
+                ", description='" + description + '\'' +
+                ", creator=" + creator +
+                ", owner=" + owner +
+                '}';
+    }
 }

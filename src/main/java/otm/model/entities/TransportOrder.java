@@ -101,4 +101,14 @@ public class TransportOrder extends OtmEntity {
     public void setConstraints(List<InlineAssociationType<Constraint>> constraints) {
         this.constraints = constraints;
     }
+
+    @Override
+    public String toString() {
+        return "TransportOrder{" +
+                "description='" + description + '\'' +
+                ", consignments=" + consignments +
+                ", actors=" + actors +
+                ", constraints=" + constraints +
+                '}';
+    }
 }

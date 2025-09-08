@@ -363,4 +363,25 @@ public class Vehicle extends OtmEntity {
     public void setActions(List<InlineAssociationType<Action>> actions) {
         this.actions = actions;
     }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "vehicleType='" + vehicleType + '\'' +
+                ", fuel=" + fuel +
+                ", otherFuelType='" + otherFuelType + '\'' +
+                ", averageFuelConsumption=" + averageFuelConsumption +
+                ", emissionStandard=" + emissionStandard +
+                ", maxLinks=" + maxLinks +
+                ", loadCapacities=" + loadCapacities +
+                ", length=" + length +
+                ", height=" + height +
+                ", width=" + width +
+                ", licensePlate='" + licensePlate + '\'' +
+                ", emptyWeight=" + emptyWeight +
+                ", actors=" + actors +
+                ", sensors=" + sensors +
+                ", actions=" + actions +
+                '}';
+    }
 }

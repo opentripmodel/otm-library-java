@@ -1,64 +1,42 @@
 package otm.profile.profiles.cbs;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import otm.BaseTest;
 import otm.model.entities.*;
 import otm.profile.validation.ValidationResult;
-import java.time.Instant;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
 
-public class CbsProfileValidatorTest {
+
+@DisplayName("CBS profile validator test")
+public class CbsProfileValidatorTest extends BaseTest {
+
+    /*
+     * A simple test that checks if the validator works. It takes the trip provided by the BaseTest class
+     * and forces an error in to the trip. The validator should detect the error and should not be valid.
+     * Next we fix the error and the validator should be valid.
+     *
+     * Note: Not all validation rules are tested in this test.
+     */
     @Test
+    @DisplayName( "CBS profile validator test validate if fields are correctly checked")
     void testCbsProfileValidator() throws Exception {
-//        Trip trip = new Trip();
-//        trip.setId(UUID.randomUUID().toString());
-//        trip.setStatus(TripStatus.COMPLETED);
-//        trip.setTransportMode(TransportMode.ROAD);
-//        trip.setEntityType(EntityType.TRIP);
-//
-//        InlineAssociationType<Vehicle> vehicle = new InlineAssociationType<>();
-//        trip.setVehicle(vehicle);
-//
-//        Actor actor = new Actor();
-//        actor.setId(UUID.randomUUID().toString());
-//
-//        ContactDetail contactDetail = new ContactDetail();
-//        contactDetail.setType(ContactDetailType.EMAIL);
-//        contactDetail.setValue("info@logistics.nl");
-//        actor.setContactDetails(List.of(contactDetail));
-//
-//        Location actorLocation = new Location();
-//        actorLocation.setGeoReference(new AddressGeoReference());
-//        actor.setLocations(List.of(new InlineAssociationType<>(actorLocation)));
-//
-//        InlineAssociationActorType actorAssociation = new InlineAssociationActorType();
-//        actorAssociation.setRoles(List.of("carrier"));
-//        actorAssociation.setEntity(actor);
-//        trip.setActors(new InlineAssociationType[]{actorAssociation});
-//
-//        StopAction stopAction = new StopAction();
-//        stopAction.setId(UUID.randomUUID().toString());
-//        stopAction.setActionType(ActionType.ATTACH_TRANSPORT_EQUIPMENT);
-//        stopAction.setLifecycle(Lifecycle.ACTUAL);
-//        stopAction.setEndTime(Date.from(Instant.now().plusSeconds(900)));
-//
-//        Location actionLocation = new Location();
-//        actionLocation.setName("Warehouse Amsterdam");
-//        actionLocation.setType(LocationType.CUSTOMER);
-//
-//        InlineAssociationType<Location> locationAssociation = new InlineAssociationType<>();
-//        locationAssociation.setEntity(actionLocation);
-//        stopAction.setLocation(locationAssociation);
-//
-//        InlineAssociationType<StopAction> actionAssociation = new InlineAssociationType<>();
-//        actionAssociation.setEntity(stopAction);
-//        trip.setActions(new InlineAssociationType[]{actionAssociation});
-//
-//        CbsProfileValidator cbsProfileValidator = new CbsProfileValidator();
-//
-//        ValidationResult validationResult = cbsProfileValidator.validate(trip);
+        CbsProfileValidator cbsProfileValidator = new CbsProfileValidator();
 
+        // Remove value from the trip that is not used in the CBS profile
+        trip.setName(null);
 
+        // force an error into the trip
+        trip.getVehicle().getEntity().setLicensePlate("");
+
+        ValidationResult validationResult = cbsProfileValidator.validate(trip);
+
+        assert !validationResult.isValid();
+
+        // fix the forced error in the trip
+        trip.getVehicle().getEntity().setLicensePlate("NL-01-AB");
+
+        validationResult = cbsProfileValidator.validate(trip);
+
+        assert validationResult.isValid();
     }
 }

@@ -74,4 +74,13 @@ public class Content {
     public void setRaw(String raw) {
         this.raw = raw;
     }
+
+    @Override
+    public String toString() {
+        return "Content{" +
+                "contentType=" + contentType +
+                ", uri='" + uri + '\'' +
+                ", raw='" + raw + '\'' +
+                '}';
+    }
 }

@@ -80,4 +80,13 @@ public class ActionResult {
     public void setReason(String reason) {
         this.reason = reason;
     }
+
+    @Override
+    public String toString() {
+        return "ActionResult{" +
+                "status=" + status +
+                ", remark='" + remark + '\'' +
+                ", reason='" + reason + '\'' +
+                '}';
+    }
 }

@@ -263,4 +263,21 @@ public class Consignment extends OtmEntity {
     public void setRelatedConsignments(List<InlineAssociationType<Consignment>> relatedConsignments) {
         this.relatedConsignments = relatedConsignments;
     }
+
+    @Override
+    public String toString() {
+        return "Consignment{" +
+                "description='" + description + '\'' +
+                ", status=" + status +
+                ", type='" + type + '\'' +
+                ", goods=" + goods +
+                ", documents=" + documents +
+                ", remark='" + remark + '\'' +
+                ", actors=" + actors +
+                ", actions=" + actions +
+                ", constraint=" + constraint +
+                ", transportOrder=" + transportOrder +
+                ", relatedConsignments=" + relatedConsignments +
+                '}';
+    }
 }

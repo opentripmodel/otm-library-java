@@ -45,4 +45,13 @@ public class InlineAssociationType<T> {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "InlineAssociationType{" +
+                "associationType=" + associationType +
+                ", entity=" + entity +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
