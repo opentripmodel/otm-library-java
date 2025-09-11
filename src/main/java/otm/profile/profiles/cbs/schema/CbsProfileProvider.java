@@ -8,9 +8,6 @@ import com.networknt.schema.JsonSchema;
 import com.networknt.schema.JsonSchemaFactory;
 import com.networknt.schema.SpecVersion;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import otm.model.entities.ContactDetailType;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -18,7 +15,6 @@ import java.io.InputStream;
 public class CbsProfileProvider {
 
     public static JsonSchema getSchema() throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
         ObjectMapper yamlMapper = new YAMLMapper();
         ObjectNode schema;
 
@@ -64,8 +60,6 @@ public class CbsProfileProvider {
         ObjectNode entitySchemaProperties = (ObjectNode) entitySchema.get("properties");
         entitySchemaProperties.set("locations", newLocationsRef);
 
-        JsonSchema finalSchema = factory.getSchema(schema);
-
-        return finalSchema;
+        return factory.getSchema(schema);
     }
 }

@@ -3,7 +3,7 @@ package otm.model.entities;
 import java.util.List;
 
 /**
- * An {@code Actor} models a legal entity. A legal entity is an individual, company, or organization that has legal rights and obligations. The use of {@code Actors} is optional, and is not necessary to use OpenTripModel. Actors can be used, e.g., to group all locations that belong to an organization, or to address an OpenTripModel message to a specific person or organization.
+ * An {@code Actor} models a legal entity. A legal entity is an individual, company, or organization that has legal rights and obligations. The use of {@code Actors} is optional, and is not necessary to use OpenTripModel. Actors can be used, e.g., to group all locations that belong to an organization or to address an OpenTripModel message to a specific person or organization.
  */
 public class Actor extends OtmEntity {
 

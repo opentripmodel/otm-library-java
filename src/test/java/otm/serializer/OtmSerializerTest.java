@@ -120,7 +120,7 @@ public class OtmSerializerTest extends BaseTest {
 
     @Test
     @DisplayName("test serialize a valid object to a JSON string")
-    void serializeToStream_withValidObject() throws IOException {
+    void testSerializeToStreamWithValidObject() throws IOException {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream(); // In-memory stream
         IOtmSerializer serializer = new OtmSerializer();
 
@@ -134,7 +134,7 @@ public class OtmSerializerTest extends BaseTest {
 
     @Test
     @DisplayName("test throw NullPointerException when the OutputStream is null")
-    void serializeToStream_withNullStream() {
+    void testSerializeToStreamWithNullStream() {
         IOtmSerializer serializer = new OtmSerializer();
 
         // We assert that calling the method with a null stream throws the expected exception.
@@ -149,7 +149,7 @@ public class OtmSerializerTest extends BaseTest {
 
     @Test
     @DisplayName("test propagate IOException when the stream fails to write")
-    void serializeToStream_withFailingStream() throws IOException {
+    void testSerializeToStreamWithFailingStream() throws IOException {
         IOtmSerializer serializer = new OtmSerializer();
         // Create a "pipe" with a writing end and a reading end.
         PipedOutputStream failingStream = new PipedOutputStream();
@@ -170,7 +170,7 @@ public class OtmSerializerTest extends BaseTest {
 
     @Test
     @DisplayName("test that deserializeFromStream should deserialize a valid JSON stream to an object")
-    void deserializeFromStreamWithValidJson() throws IOException {
+    void testDeserializeFromStreamWithValidJson() throws IOException {
         IOtmSerializer serializer = new OtmSerializer();
 
         // Convert the string to an in-memory input stream
@@ -183,7 +183,7 @@ public class OtmSerializerTest extends BaseTest {
 
     @Test
     @DisplayName("test that deserializeFromStream should throw NullPointerException when the InputStream is null")
-    void deserializeFromStreamWithNullInputStream() {
+    void testDeserializeFromStreamWithNullInputStream() {
         IOtmSerializer serializer = new OtmSerializer();
 
         NullPointerException exception = assertThrows(
@@ -196,7 +196,7 @@ public class OtmSerializerTest extends BaseTest {
 
     @Test
     @DisplayName("that that deserializeFromStream should throw NullPointerException when the valueType is null")
-    void deserializeFromStreamWithNullValueType() {
+    void testDeserializeFromStreamWithNullValueType() {
         IOtmSerializer serializer = new OtmSerializer();
 
         String json = "{\"id\":1}";
@@ -212,7 +212,7 @@ public class OtmSerializerTest extends BaseTest {
 
     @Test
     @DisplayName("test that deserializeFromStream should throw IOException for malformed JSON")
-    void deserializeFromStreamWithMalformedJson() {
+    void testDeserializeFromStreamWithMalformedJson() {
         IOtmSerializer serializer = new OtmSerializer();
 
         String malformedJson = "{\"id\":99,\"title\":\"Incomplete"; // Missing quote and brace

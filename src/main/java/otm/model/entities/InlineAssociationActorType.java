@@ -15,11 +15,11 @@ public class InlineAssociationActorType extends InlineAssociationType<Actor> {
      *     <li><b>Receiver</b>: the actor that receives the goods.</li>
      *     <li><b>Driver</b>: the actor that drives the vehicle containing the goods.</li>
      *     <li><b>Subcontractor</b>: The actor actually carrying out the physical delivery of the goods.</li>
-     *     <li><b>Owner</b>: The actor owning the associated entity, e.g. the owner of a location or vehicle.</li>
+     *     <li><b>Owner</b>: The actor owning the associated entity, e.g., the owner of a location or vehicle.</li>
      *     <li></li>
      * </ul>
      * <p>
-     *     <b>How these are related</b> The consignee requires goods from the consignor. The shipper is the party responsible for ensuring this shipment takes place. The carrier is the one responsible for transporting the goods, and ensures they are delivered to the receiver. If required/desired, the carrier can delegate the actual delivery to another party, the subcontractor. A driver is an actual person driving the vehicle. Note that a single actor can have multiple roles, for instance, an actor can be the shipper and consignor at the same time. Also note that there might be an actor that does not fit any of these roles. Then the roles may be left empty. However if the role of the actor fits any of the above it must be present.
+     *     <b>How these are related</b> The consignee requires goods from the consignor. The shipper is the party responsible for ensuring this shipment takes place. The carrier is the one responsible for transporting the goods and ensures they are delivered to the receiver. If required/desired, the carrier can delegate the actual delivery to another party, the subcontractor. A driver is an actual person driving the vehicle. Note that a single actor can have multiple roles, for instance, an actor can be the shipper and consignor at the same time. Also note that there might be an actor that does not fit any of these roles. Then the roles may be left empty. However, if the role of the actor fits any of the above, it must be present.
      * </p>
      */
     private List<String> roles;

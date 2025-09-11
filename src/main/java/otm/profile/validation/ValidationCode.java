@@ -9,42 +9,40 @@ public enum ValidationCode {
     /**
      * A property declared as required is missing from the instance.
      */
-    Required,
+    REQUIRED,
 
     /**
      * The JSON value’s data-type does not match the schema’s type constraint.
      */
-    Type,
+    TYPE,
 
     /**
      * The value is not one of the permitted options listed under enum.
      */
-    Enum,
+    ENUM,
 
     /**
      * An array has fewer elements than the minimum specified by minItems.
      */
-    MinItems,
+    MIN_ITEMS,
 
     /**
      * A string exceeds the maximum length allowed by maxLength.
      */
-    MaxLength,
+    MAX_LENGTH,
 
     /**
      * A string is shorter than the minimum length required by minLength.
      */
-    MinLength,
+    MIN_LENGTH,
 
     /**
-     * The instance contains a member that is disallowed because
-     * additionalProperties is set to false.
+     * The instance contains a member disallowed because additionalProperties is set to false.
      */
-    AdditionalProperties,
+    ADDITIONAL_PROPERTIES,
 
     /**
-     * Fallback code used when the mapper cannot translate a keyword
-     * to a dedicated member.
+     * Fallback code used when the mapper cannot translate a keyword to a dedicated member.
      */
-    GenericError
+    GENERIC_ERROR
 }

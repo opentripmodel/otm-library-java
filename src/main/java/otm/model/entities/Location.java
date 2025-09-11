@@ -12,12 +12,12 @@ public class Location extends OtmEntity {
     private LocationType type;
 
     /**
-     * Describes a geographic reference, this is the primary way to link a {@link Location} entity to a physical, geographic location.
+     * Describes a geographic reference; this is the primary way to link a {@link Location} entity to a physical, geographic location.
      */
     private GeoReference geoReference;
 
     /**
-     * the United Nations Code for Trade and Transport Locations, is a geographic coding scheme developed and maintained by United Nations Economic Commission for Europe (UNECE) to uniquely identify locations. See <a href="https://en.wikipedia.org/wiki/UN/LOCODE">this Wikipedia page</a>.
+     * The United Nations Code for Trade and Transport Locations is a geographic coding scheme developed and maintained by the United Nations Economic Commission for Europe (UNECE) to uniquely identify locations. See <a href="https://en.wikipedia.org/wiki/UN/LOCODE">this Wikipedia page</a>.
      */
     private String unCode;
 
@@ -27,7 +27,7 @@ public class Location extends OtmEntity {
     private String gln;
 
     /**
-     * Address information that is used as an administrative reference. For example: when the actual load location is different from the officially registered location, this holds the latter
+     * Address information that is used as an administrative reference. For example, when the actual load location is different from the officially registered location, this holds the latter
      */
     private AdministrativeReference administrativeReference;
 
@@ -56,7 +56,7 @@ public class Location extends OtmEntity {
      * In the context of a {@link Location}, access to the location is only allowed if the given constraint applies.
      * </p>
      * <p>
-     * <b>Note</b> that constraints can be nested and combined using the {@link AndConstraint}, {@link OrConstraint} and {@link NotConstraint}.
+     * <b>Note</b> that constraints can be nested and combined using the {@link AndConstraint} and {@link OrConstraint}.
      * </p>
      */
     private InlineAssociationType<Constraint> constraint;
@@ -64,7 +64,7 @@ public class Location extends OtmEntity {
     /**
      * Sub-locations that can be identified on their own but are also part of this
      * location. For example, a dock at a large distribution area. Sub-locations can also
-     * be seen as 'points of interest' on a larger location.
+     * be seen as 'points of interest' in a larger location.
      */
     private List<InlineAssociationType<Location>> subLocations;
 

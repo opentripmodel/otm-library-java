@@ -49,7 +49,7 @@ class AndConstraint extends GenericConstraint {
     }
 
     /**
-     * All constraints in the array are combined using a boolean AND relation. This means that the resulting constraint will only apply if all constraints in the array would apply.
+     * All constraints in the array are combined using a boolean AND relation. This means that the resulting constraint will only apply if all constraints in the array apply.
      */
     private ConstraintValueBase[] and;
 
@@ -87,7 +87,7 @@ class OrConstraint extends GenericConstraint {
     }
 
     /**
-     * All constraints in the array are combined using a boolean OR relation. This means that the resulting constraint will apply if any of the constraints in the array would apply.
+     * All constraints in the array are combined using a boolean OR relation. This means that the resulting constraint will apply if any of the constraints in the array apply.
      */
     private ConstraintValueBase[] or;
 
@@ -176,7 +176,7 @@ class TimeWindowConstraint extends GenericConstraint {
 enum ValueBoundConstraintValueType {SENSOR, SPEED, WEIGHT, TEMPERATURE, HEIGHT}
 
 /**
- * The upper and lower bounds the value bound constraint required. Available options are:
+ * The upper and lower bounds the value-bound constraint required. Available options are:
  * <ul>
  *     <li>{@code maximum}: All sensor values below and including the maximum value are allowed.</li>
  *     <li>{@code minimum}: All sensor values above and including the minimum value are allowed.</li>

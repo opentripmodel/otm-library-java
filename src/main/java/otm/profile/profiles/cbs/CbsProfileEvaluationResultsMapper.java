@@ -1,6 +1,5 @@
 package otm.profile.profiles.cbs;
 
-import com.networknt.schema.JsonSchema;
 import com.networknt.schema.ValidationMessage;
 import otm.profile.validation.Severity;
 import otm.profile.validation.ValidationCode;
@@ -12,7 +11,7 @@ import java.util.Set;
 
 public class CbsProfileEvaluationResultsMapper {
 
-    public static ValidationResult map(JsonSchema schema, Set<ValidationMessage> validationMessages) {
+    public static ValidationResult map(Set<ValidationMessage> validationMessages) {
         // Collect error messages
         List<otm.profile.validation.ValidationMessage> messages = new ArrayList<>();
 
@@ -21,7 +20,7 @@ public class CbsProfileEvaluationResultsMapper {
                 Severity.ERROR, // everything from JSON Schema is an error
                 validationMessage.getMessage(),
                 validationMessage.getSchemaLocation().toString(),
-                ValidationCode.Required
+                ValidationCode.REQUIRED
             ));
         }
 

@@ -8,7 +8,6 @@ import otm.profile.validation.ValidationResult;
 import otm.serializer.OtmSerializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 
 import java.io.IOException;
 import java.util.Set;
@@ -28,8 +27,6 @@ public class CbsProfileValidator implements IProfileValidator<Trip> { // Using p
 
         Set<ValidationMessage> validationMessages = cbsSchema.validate(tripJsonNode);
 
-        ValidationResult validationResult = CbsProfileEvaluationResultsMapper.map(cbsSchema, validationMessages);
-
-        return validationResult;
+        return CbsProfileEvaluationResultsMapper.map(validationMessages);
     }
 }

@@ -11,12 +11,6 @@ public class JsonValidationHelper {
         throw new IllegalStateException("Utility class");
     }
 
-    // Using a static ObjectMapper for efficiency, configured with default behavior
-    // For OTM-specific serialization options (camelCase, enum as string), you'd typically
-    // use a pre-configured ObjectMapper similar to JsonOptionsFactory in .NET.
-    // For simplicity here, we'll use a basic ObjectMapper.
-    // If you need specific configurations for validation, create a new ObjectMapper
-    // or use a configured one passed from a factory.
     private static final ObjectMapper objectMapper = new ObjectMapper()
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); // Allow extra fields in JSON
 

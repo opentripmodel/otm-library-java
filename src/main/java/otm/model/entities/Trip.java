@@ -7,12 +7,12 @@ import java.util.Arrays;
  */
 public class Trip extends OtmEntity {
     /**
-     * Whether this trip is a draft, requested, confirmed, in transit, completed or cancelled. The values accepted (replaced by confirmed) and modified (replaced the lastModified field on every entity) are deprecated since OTM5.1, but will be supported for the whole OTM5.X line.
+     * Whether this trip is a draft, requested, confirmed, in transit, completed or canceled. The values accepted (replaced by confirmed) and modified (replaced the lastModified field on every entity) are deprecated since OTM5.1, but will be supported for the whole OTM5.X line.
      */
     private TripStatus status;
 
     /**
-     * Method of transport used for the carriage of goods on this trip, can either be using a ship
+     * Method of transport used for the carriage of goods on this trip can either be using a ship
      * (maritime or inland waterway), a truck/car/van/bike/etc. (road), using the train (rail), or
      * using a plane (air). These values are based on the <a href="https://unece.org/fileadmin/DAM/cefact/recommendations/rec19/rec19_ecetrd138.pdf">recommendation of UNECE</a>.
      */
@@ -24,7 +24,7 @@ public class Trip extends OtmEntity {
     private InlineAssociationType<Vehicle> vehicle;
 
     /**
-     * The actors associated with this trip, for instance the client or the executing party
+     * The actors associated with this trip, for instance, the client or the executing party
      */
     private InlineAssociationActorType[] actors;
 
@@ -34,7 +34,7 @@ public class Trip extends OtmEntity {
     private InlineAssociationType<StopAction>[] actions;
 
     /**
-     * Constraints this trip has to abide to, such as the start and end date times in which it has to be completed.
+     * Constraints this trip has to abide by, such as the start and end date times in which it has to be completed.
      */
     private InlineAssociationType<Constraint>[] constraints;
 

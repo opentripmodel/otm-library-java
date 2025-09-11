@@ -3,7 +3,7 @@ package otm.model.entities;
 import java.util.List;
 
 /**
- * The TransportOrder is the top-level entity to model a group of related consignments that might be transported separately, but need to be administered together. For consistency, even if there is only one consignment, it is still required to use a transport order.
+ * The TransportOrder is the top-level entity to model a group of related consignments that might be transported separately but need to be administered together. For consistency, even if there is only one consignment, it is still required to use a transport order.
  */
 public class TransportOrder extends OtmEntity {
 
@@ -19,7 +19,7 @@ public class TransportOrder extends OtmEntity {
     private List<InlineAssociationType<Consignment>> consignments;
 
     /**
-     * The actors associated with this transport order, for instance the consignor, consignee.
+     * The actors associated with this transport order, for instance, the consignor, consignee.
      */
     private List<InlineAssociationActorType> actors;
 

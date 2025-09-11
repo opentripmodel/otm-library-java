@@ -74,7 +74,6 @@ public class BaseTest {
         InlineAssociationType<StopAction> stopActionAssociation = new InlineAssociationType<>();
         StopAction stopAction = new StopAction();
         stopAction.setId("ff3251c5-dd40-4a1f-9abd-0fd0205fd2aa");
-//        stopAction.setActionType(ActionType.UNLOAD);
         stopAction.setActionType(ActionType.STOP);
         stopAction.setLifecycle(Lifecycle.ACTUAL);
         stopAction.setEndTime(formatter.parse("2025-9-3 13:42:13"));

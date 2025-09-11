@@ -1,17 +1,12 @@
 package otm.serializer;
 
-import com.fasterxml.jackson.core.StreamReadFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.fasterxml.jackson.databind.MapperFeature;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.IOException;
-import java.util.Objects; // For Objects.requireNonNull
-import com.fasterxml.jackson.databind.EnumNamingStrategy;
-import com.google.common.base.CaseFormat;
+import java.util.Objects;
 
 
 public class OtmSerializer implements IOtmSerializer {

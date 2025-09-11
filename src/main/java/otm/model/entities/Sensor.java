@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Sensor {
     /**
-     * Sometimes more than one sensor can be associated with a single entity. This is the case e.g. in cooled
+     * Sometimes more than one sensor can be associated with a single entity. This is the case e.g., in cooled
      * trailers that are divided into compartments with different temperatures, where each compartment has its
      * own sensor. The placement member can be used to identify where a sensor is placed. Parties using OpenTripModel
      * to exchange sensor data may wish to agree on a standardized naming, but this is too specific to describe in

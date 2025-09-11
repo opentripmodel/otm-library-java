@@ -12,7 +12,7 @@ public class Route extends OtmEntity {
     private LatLonArrayGeoReference geoReferences;
 
     /**
-     * Actors associated with this route, for instance the Company that requires this route as a Last-Mile guidance.
+     * Actors associated with this route, for instance, the Company that requires this route as Last-Mile guidance.
      */
     private List<InlineAssociationActorType> actors;
 
@@ -22,7 +22,7 @@ public class Route extends OtmEntity {
     private List<InlineAssociationType<StopAction>> actions;
 
     /**
-     * Constraints of using this route, for instance it might only be used by vehicles with below a certain weight.
+     * Constraints of using this route, for instance, it might only be used by vehicles with below a certain weight.
      */
     private InlineAssociationType<Constraint> constraint;
 

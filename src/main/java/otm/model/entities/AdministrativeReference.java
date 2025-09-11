@@ -128,7 +128,7 @@ public class AdministrativeReference {
     }
 
     /**
-     * Set city of the administrative reference address
+     * Set the city of the administrative reference address
      * @param city The city of administrative reference address
      */
     public void setCity(String city) {

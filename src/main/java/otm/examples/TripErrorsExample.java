@@ -150,7 +150,7 @@ public class TripErrorsExample {
         System.out.println(validationResult.toString());
 
         System.out.println("Still forgot to fix all errors");
-
+        System.out.println("Fixing errors last errors ...");
         // Still forgot to resolve some parts of the error
         trip.getVehicle().getEntity().setLicensePlate("NL-01-AB");
 
