@@ -1,19 +1,25 @@
 package otm.serializer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.assertj.core.api.recursive.comparison.RecursiveComparisonConfiguration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import otm.BaseTest;
 import otm.model.entities.Trip;
-
 import java.io.*;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("OTM serializer test")
 public class OtmSerializerTest extends BaseTest {
+    static ZoneId systemZone = ZoneId.systemDefault();
+    static ZonedDateTime zonedDateTimeStart = START_TIME.atZone(systemZone);
+    static ZonedDateTime zonedDateTimeEnd = END_TIME.atZone(systemZone);
+    static String formattedStartDate = zonedDateTimeStart.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX"));
+    static String formattedEndDate = zonedDateTimeEnd.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX"));
 
     private final static String TRIP_JSON =  """
                 {
@@ -71,12 +77,12 @@ public class OtmSerializerTest extends BaseTest {
                           "type" : "customer"
                         }
                       },
-                      "startTime" : "2025-09-03T11:32:13.000+00:00",
-                      "endTime" : "2025-09-03T11:42:13.000+00:00"
+                      "startTime" : "%s",
+                      "endTime" : "%s"
                     }
                   } ],
                   "entityType" : "trip"
-                }""";
+                }""".formatted(formattedStartDate, formattedEndDate);
 
     /*
      * A simple test that checks if the serializer works. It takes the trip provided by the BaseTest class

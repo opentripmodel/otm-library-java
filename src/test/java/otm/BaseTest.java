@@ -4,17 +4,20 @@ import org.junit.jupiter.api.BeforeEach;
 import otm.model.entities.*;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class BaseTest {
 
     protected Trip trip;
 
+    protected static final Instant START_TIME = Instant.now().atZone(ZoneId.systemDefault()).toInstant();
+    protected static final Instant END_TIME = START_TIME.plus(10, ChronoUnit.MINUTES);
+
     @BeforeEach
     void setup() throws ParseException {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.ENGLISH);
-
         // Build a Trip
         trip = new Trip();
         trip.setId("baa6e209-2b2b-4f35-86e1-dd229ca839e4");
@@ -76,7 +79,7 @@ public class BaseTest {
         stopAction.setId("ff3251c5-dd40-4a1f-9abd-0fd0205fd2aa");
         stopAction.setActionType(ActionType.STOP);
         stopAction.setLifecycle(Lifecycle.ACTUAL);
-        stopAction.setEndTime(formatter.parse("2025-9-3 13:42:13"));
+        stopAction.setEndTime(Date.from(END_TIME));
 
         InlineAssociationType<Location> stopLocationAssociation = new InlineAssociationType<>();
         Location stopLocation = new Location();
@@ -85,7 +88,7 @@ public class BaseTest {
         stopLocationAssociation.setEntity(stopLocation);
         stopAction.setLocation(stopLocationAssociation);
         stopActionAssociation.setEntity(stopAction);
-        stopAction.setStartTime(formatter.parse("2025-09-03 13:32:13"));
+        stopAction.setStartTime(Date.from(START_TIME));
         actions.add(stopActionAssociation);
         trip.setActions(actions.toArray(new InlineAssociationType[0]));
     }

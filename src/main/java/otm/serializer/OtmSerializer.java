@@ -6,7 +6,11 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.Objects;
+import java.util.TimeZone;
 
 
 public class OtmSerializer implements IOtmSerializer {
@@ -27,6 +31,8 @@ public class OtmSerializer implements IOtmSerializer {
         enumModule.addSerializer(new CamelCaseEnumSerializer());
         // Add deserializer for enums, turning the camelCase string back to the enum value
         enumModule.addDeserializer(Enum.class, new CamelCaseEnumDeserializer(Enum.class));
+
+        this.objectMapper.setTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault()));
 
         // Add custom module to object mapper
         this.objectMapper.registerModule(enumModule);
