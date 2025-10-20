@@ -60,14 +60,21 @@ public class Action extends OtmEntity {
     /**
      * The time at which the action starts
      */
-    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    @JsonFormat(
+            shape = JsonFormat.Shape.STRING,
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "UTC"
+    )
     private Date startTime;
 
     /**
      * The time at which the action is completed
      */
-    @JsonFormat(shape = JsonFormat.Shape.STRING)
-    private Date endTime;
+    @JsonFormat(
+            shape = JsonFormat.Shape.STRING,
+            pattern = "yyyy-MM-dd HH:mm:ss",
+            timezone = "UTC"
+    )    private Date endTime;
 
     /**
      * Association actions

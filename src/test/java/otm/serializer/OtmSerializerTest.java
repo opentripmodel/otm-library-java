@@ -15,11 +15,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("OTM serializer test")
 public class OtmSerializerTest extends BaseTest {
-    static ZoneId systemZone = ZoneId.systemDefault();
-    static ZonedDateTime zonedDateTimeStart = START_TIME.atZone(systemZone);
-    static ZonedDateTime zonedDateTimeEnd = END_TIME.atZone(systemZone);
-    static String formattedStartDate = zonedDateTimeStart.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX"));
-    static String formattedEndDate = zonedDateTimeEnd.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSXXX"));
+    static ZoneId utc = ZoneId.of("UTC");
+    static ZonedDateTime zonedDateTimeStart = START_TIME.atZone(utc);
+    static ZonedDateTime zonedDateTimeEnd = END_TIME.atZone(utc);
+    static String formattedStartDate = zonedDateTimeStart.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    static String formattedEndDate = zonedDateTimeEnd.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 
     private final static String TRIP_JSON =  """
                 {
