@@ -62,7 +62,7 @@ public class Action extends OtmEntity {
      */
     @JsonFormat(
             shape = JsonFormat.Shape.STRING,
-            pattern = "yyyy-MM-dd HH:mm:ss",
+            pattern = "yyyy-MM-dd HH:mm:ss.SSS",
             timezone = "UTC"
     )
     private Date startTime;
@@ -72,7 +72,7 @@ public class Action extends OtmEntity {
      */
     @JsonFormat(
             shape = JsonFormat.Shape.STRING,
-            pattern = "yyyy-MM-dd HH:mm:ss",
+            pattern = "yyyy-MM-dd HH:mm:ss.SSS",
             timezone = "UTC"
     )    private Date endTime;
 

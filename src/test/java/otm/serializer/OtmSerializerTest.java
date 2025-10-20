@@ -18,8 +18,8 @@ public class OtmSerializerTest extends BaseTest {
     static ZoneId utc = ZoneId.of("UTC");
     static ZonedDateTime zonedDateTimeStart = START_TIME.atZone(utc);
     static ZonedDateTime zonedDateTimeEnd = END_TIME.atZone(utc);
-    static String formattedStartDate = zonedDateTimeStart.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-    static String formattedEndDate = zonedDateTimeEnd.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    static String formattedStartDate = zonedDateTimeStart.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
+    static String formattedEndDate = zonedDateTimeEnd.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
 
     private final static String TRIP_JSON =  """
                 {
