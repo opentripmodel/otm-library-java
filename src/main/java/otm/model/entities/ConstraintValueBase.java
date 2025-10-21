@@ -25,4 +25,11 @@ public abstract class ConstraintValueBase {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "ConstraintValueBase{" +
+                "description='" + description + '\'' +
+                '}';
+    }
 }

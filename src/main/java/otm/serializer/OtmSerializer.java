@@ -2,10 +2,18 @@ package otm.serializer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.IOException;
-import java.util.Objects; // For Objects.requireNonNull
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
+import java.util.TimeZone;
+
 
 public class OtmSerializer implements IOtmSerializer {
 
@@ -18,6 +26,18 @@ public class OtmSerializer implements IOtmSerializer {
      */
     public OtmSerializer(ObjectMapper objectMapper) {
         this.objectMapper = (objectMapper != null) ? objectMapper : JsonOptionsFactory.createDefault();
+
+        // Add custom module for object mapper
+        SimpleModule enumModule = new SimpleModule("EnumModule");
+        // Add serializer for enums as strings
+        enumModule.addSerializer(new CamelCaseEnumSerializer());
+        // Add deserializer for enums, turning the camelCase string back to the enum value
+        enumModule.addDeserializer(Enum.class, new CamelCaseEnumDeserializer(Enum.class));
+
+        this.objectMapper.setTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault()));
+
+        // Add custom module to object mapper
+        this.objectMapper.registerModule(enumModule);
     }
 
     /**

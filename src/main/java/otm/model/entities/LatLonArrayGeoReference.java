@@ -1,7 +1,9 @@
 package otm.model.entities;
 
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
+@JsonTypeName("latLonArray")
 public class LatLonArrayGeoReference extends GeoReference {
 
     @Override
@@ -30,5 +32,12 @@ public class LatLonArrayGeoReference extends GeoReference {
      */
     public void setPoints(List<LatLonPointGeoReference> points) {
         this.points = points;
+    }
+
+    @Override
+    public String toString() {
+        return "LatLonArrayGeoReference{" +
+                "points=" + points +
+                '}';
     }
 }

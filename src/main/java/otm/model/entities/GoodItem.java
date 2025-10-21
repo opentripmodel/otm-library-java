@@ -14,7 +14,7 @@ public class GoodItem extends OtmEntity {
     private String description;
 
     /**
-     * Remark belonging to the goods that need to be transported. For example a delivery note.
+     * Remark belonging to the goods that need to be transported. For example, a delivery note.
      */
     private String remark;
 
@@ -60,7 +60,7 @@ public class GoodItem extends OtmEntity {
     private Adr adr;
 
     /**
-     * The product type of goods, for instance bananas.
+     * The product type of goods, for instance, bananas.
      */
     private String productType;
 
@@ -78,12 +78,12 @@ public class GoodItem extends OtmEntity {
     private List<ClassificationLine> classificationLines;
 
     /**
-     * All parties associated with these goods, for example the consignor and consignee.
+     * All parties associated with these goods, for example, the consignor and consignee.
      */
     private List<InlineAssociationActorType> actors;
 
     /**
-     * Associations actions
+     * Association actions
      */
     private List<InlineAssociationType<Action>> actions;
 
@@ -390,5 +390,28 @@ public class GoodItem extends OtmEntity {
 
     public void setConstraint(InlineAssociationType<Constraint> constraint) {
         this.constraint = constraint;
+    }
+
+    @Override
+    public String toString() {
+        return "GoodItem{" +
+                "type=" + type +
+                ", description='" + description + '\'' +
+                ", remark='" + remark + '\'' +
+                ", barCode='" + barCode + '\'' +
+                ", quantity=" + quantity +
+                ", grossWeight=" + grossWeight +
+                ", weight=" + weight +
+                ", width=" + width +
+                ", height=" + height +
+                ", length=" + length +
+                ", adr=" + adr +
+                ", productType='" + productType + '\'' +
+                ", packagingMaterial='" + packagingMaterial + '\'' +
+                ", classificationLines=" + classificationLines +
+                ", actors=" + actors +
+                ", actions=" + actions +
+                ", constraint=" + constraint +
+                '}';
     }
 }

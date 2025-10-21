@@ -1,6 +1,7 @@
-package otm.profile.profiles;
+package otm.profile.profiles.transportorder;
 
 import otm.model.entities.TransportOrder;
+import otm.profile.profiles.IProfileValidator;
 import otm.profile.validation.ValidationResult;
 
 /**

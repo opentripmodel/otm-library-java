@@ -23,7 +23,7 @@ public abstract class OtmEntity {
     /**
      * External attributes are a simple way to add information in an OpenTripModel message that could not
      * fit into one of the OTM fields otherwise. The externalAttributes member is meant for additional metadata
-     * and/or additional ID's of an entity. This can also help to identify an OTM entity in a system by the ID
+     * and/or additional ID of an entity. This can also help to identify an OTM entity in a system by the ID
      * of that system.
      */
     private ExternalAttributes externalAttributes;
@@ -34,18 +34,18 @@ public abstract class OtmEntity {
     private LocalDateTime creationDate;
 
     /**
-     * The last modified date of this entity. If none is given the creation date is used instead.
+     * The last modified date of this entity. If none is given, the creation date is used instead.
      */
     private LocalDateTime lastModified;
 
     /**
-     * The context events provides some optional information about the events that can provide
+     * The context events provide some optional information about the events that can provide
      * additional information on the current state of this entity.
      *
-     * For example: your system might send ETA information for the arrival of a vehicle on a location.
+     * For example, your system might send ETA information for the arrival of a vehicle on a location.
      * To make it clear what caused this ETA to be updated, we can include some information about what
      * caused this ETA update by including an event as context. If your ETA update was caused by a
-     * location update, this event can be included as context.If the ETA was caused by a traffic accident
+     * location update, this event can be included as context. If the ETA was caused by a traffic accident
      * on the route of the vehicle, you can include that event in the context.
      */
     private List<Event> contextEvents;
@@ -152,5 +152,17 @@ public abstract class OtmEntity {
      */
     public void setEvents(List<Event> events){
         this.contextEvents = events;
+    }
+
+    @Override
+    public String toString() {
+        return "OtmEntity{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", externalAttributes=" + externalAttributes +
+                ", creationDate=" + creationDate +
+                ", lastModified=" + lastModified +
+                ", contextEvents=" + contextEvents +
+                '}';
     }
 }

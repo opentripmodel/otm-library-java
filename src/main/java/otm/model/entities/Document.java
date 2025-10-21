@@ -7,7 +7,7 @@ public class Document extends OtmEntity {
     private Content content;
 
     /**
-     * The type of the document, such as a photo, text document, PDF etc.
+     * The type of the document, such as a photo, text document, PDF, etc.
      */
     private String documentType;
 
@@ -17,12 +17,12 @@ public class Document extends OtmEntity {
     private String filename;
 
     /**
-     * The official MIME type of the file. See <a href="https://en.wikipedia.org/wiki/Media_type">Wikepedia</a> for more information.
+     * The official MIME type of the file. See <a href="https://en.wikipedia.org/wiki/Media_type">Wikipedia</a> for more information.
      */
     private String mimeType;
 
     /**
-     * The description of the file, for example what purpose it serves.
+     * The description of the file, for example, what purpose it serves.
      */
     private String description;
 
@@ -163,5 +163,18 @@ public class Document extends OtmEntity {
      */
     public void setOwner(Actor owner) {
         this.owner = owner;
+    }
+
+    @Override
+    public String toString() {
+        return "Document{" +
+                "content=" + content +
+                ", documentType='" + documentType + '\'' +
+                ", filename='" + filename + '\'' +
+                ", mimeType='" + mimeType + '\'' +
+                ", description='" + description + '\'' +
+                ", creator=" + creator +
+                ", owner=" + owner +
+                '}';
     }
 }

@@ -1,13 +1,18 @@
 package otm.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
 /**
  * Describes a geographic reference this is the primary way to link a {@code Location} entity to a physical, geographic location.
  */
+@JsonTypeName("address")
 public class AddressGeoReference extends GeoReference {
+
+    private final GeoReferenceType type = GeoReferenceType.ADDRESS_GEO_REFERENCE;
 
     @Override
     public GeoReferenceType getType() {
-        return GeoReferenceType.ADDRESS_GEO_REFERENCE;
+        return type;
     }
 
     /**
@@ -155,5 +160,19 @@ public class AddressGeoReference extends GeoReference {
      */
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    @Override
+    public String toString() {
+        return "AddressGeoReference{" +
+                "type=" + type +
+                ", name='" + name + '\'' +
+                ", street='" + street + '\'' +
+                ", houseNumber='" + houseNumber + '\'' +
+                ", houseNumberAddition='" + houseNumberAddition + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                '}';
     }
 }

@@ -1,5 +1,8 @@
 package otm.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
+@JsonTypeName("latLonPoint")
 public class LatLonPointGeoReference extends GeoReference {
 
     @Override
@@ -146,5 +149,17 @@ public class LatLonPointGeoReference extends GeoReference {
      */
     public void setBearingType(BearingType bearingType) {
         this.bearingType = bearingType;
+    }
+
+    @Override
+    public String toString() {
+        return "LatLonPointGeoReference{" +
+                "lat=" + lat +
+                ", lon=" + lon +
+                ", speed=" + speed +
+                ", heading=" + heading +
+                ", bearing=" + bearing +
+                ", bearingType=" + bearingType +
+                '}';
     }
 }

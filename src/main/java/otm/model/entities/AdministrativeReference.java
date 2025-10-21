@@ -128,7 +128,7 @@ public class AdministrativeReference {
     }
 
     /**
-     * Set city of the administrative reference address
+     * Set the city of the administrative reference address
      * @param city The city of administrative reference address
      */
     public void setCity(String city) {
@@ -149,5 +149,18 @@ public class AdministrativeReference {
      */
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    @Override
+    public String toString() {
+        return "AdministrativeReference{" +
+                "name='" + name + '\'' +
+                ", street='" + street + '\'' +
+                ", houseNumber='" + houseNumber + '\'' +
+                ", houseNumberAddition='" + houseNumberAddition + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                '}';
     }
 }

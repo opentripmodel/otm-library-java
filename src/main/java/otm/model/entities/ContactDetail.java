@@ -97,4 +97,14 @@ public class ContactDetail {
     public void setLanguage(String language) {
         this.language = language;
     }
+
+    @Override
+    public String toString() {
+        return "ContactDetail{" +
+                "type=" + type +
+                ", value='" + value + '\'' +
+                ", remark='" + remark + '\'' +
+                ", language='" + language + '\'' +
+                '}';
+    }
 }

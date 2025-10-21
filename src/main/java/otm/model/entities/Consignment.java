@@ -7,17 +7,17 @@ import java.util.List;
  */
 public class Consignment extends OtmEntity {
     /**
-     * General description of consignment in Free text. e.g 20 europallets fruit.
+     * General description of consignment in Free text. For example, 20 euro-pallets of fruit.
      */
     private String description;
 
     /**
-     * Whether this consignment is a draft, requested, confirmed, in transit, completed or cancelled. The values accepted (replaced by confirmed) and modified (replaced the lastModified field on every entity) are deprecated since OTM5.1, but will be supported for the whole OTM5.X line.
+     * Whether this consignment is a draft, requested, confirmed, in transit, completed or canceled. The values accepted (replaced by confirmed) and modified (replaced the lastModified field on every entity) are deprecated since OTM5.1, but will be supported for the whole OTM5.X line.
      */
     private ConsignmentStatus status;
 
     /**
-     * Free text to describe type of consignment. Usually used to indicate the property types of the products being transported (e.g. frozen, fragile, etc.).
+     * Free text to describe the type of consignment. Usually used to indicate the property types of the products being transported (e.g., frozen, fragile, etc.).
      */
     private String type;
 
@@ -37,17 +37,17 @@ public class Consignment extends OtmEntity {
     private String remark;
 
     /**
-     * The actors associated with this consignment, for instance the shipper and carrier. One should inline the actors only on the top-level entity (such as the transportOrder or trip)
+     * The actors associated with this consignment, for instance, the shipper and carrier. One should inline the actors only on the top-level entity (such as the transportOrder or trip)
      */
     private List<InlineAssociationType<Actor>> actors;
 
     /**
-     * General description of actions related to the consignment f.e. loading, unloading, hand over, drop of.
+     * General description of actions related to the consignment, for example, loading, unloading, hand over, drop of.
      */
     private List<InlineAssociationType<Action>> actions;
 
     /**
-     * Constraints this consignment has to abide to, such special equipment (tail lift, truck mounted forklift), special vehicle, special instructions related to consignor and consignee. Note that you can put the constraints on the individual goods. However using constraints on the consignment is simpler and therefore recommended when possible.
+     * Constraints this consignment has to abide to, such as special equipment (tail lift, truck mounted forklift), special vehicle, special instructions related to consignor and consignee. Note that you can put the constraints on the individual goods. However, using constraints on the consignment is simpler and therefore recommended when possible.
      */
     private InlineAssociationType<Constraint> constraint;
 
@@ -262,5 +262,22 @@ public class Consignment extends OtmEntity {
      */
     public void setRelatedConsignments(List<InlineAssociationType<Consignment>> relatedConsignments) {
         this.relatedConsignments = relatedConsignments;
+    }
+
+    @Override
+    public String toString() {
+        return "Consignment{" +
+                "description='" + description + '\'' +
+                ", status=" + status +
+                ", type='" + type + '\'' +
+                ", goods=" + goods +
+                ", documents=" + documents +
+                ", remark='" + remark + '\'' +
+                ", actors=" + actors +
+                ", actions=" + actions +
+                ", constraint=" + constraint +
+                ", transportOrder=" + transportOrder +
+                ", relatedConsignments=" + relatedConsignments +
+                '}';
     }
 }

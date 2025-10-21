@@ -2,6 +2,7 @@ package otm.profile.validation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class ValidationResult {
@@ -16,6 +17,30 @@ public class ValidationResult {
         if (validationMessages != null && validationMessages.length > 0) {
             this.messages.addAll(Arrays.asList(validationMessages));
         }
+    }
+
+    @Override
+    public String toString() {
+        if(isValid()){
+            return "Validation succeeded (0 errors)";
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Validation failed (").append(messages.size()).append(" errors): \n");
+
+        messages.sort(Comparator.comparing(ValidationMessage::getSeverity));
+        for(ValidationMessage msg : messages){
+            sb.append("[")
+                .append(msg.getSeverity())
+                .append("] ")
+                .append(msg.getPath())
+                .append(" -> ")
+                .append(msg.getMessage())
+                .append("\n");
+        }
+
+        return sb.toString();
     }
 
     /**

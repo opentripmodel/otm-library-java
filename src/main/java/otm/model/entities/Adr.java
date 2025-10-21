@@ -23,12 +23,12 @@ public class Adr {
     private String description;
 
     /**
-     * The technical name which shall supplement the proper shipping name shall be the ISO common name. A recognized chemical name, if relevant a biological name, or other name currently used in scientific and technical handbooks, journals and texts. (see 3.1.2.8.1.1 in <a href="https://unece.org/sites/default/files/2021-01/ADR2021_Vol1e_0.pdf">ADR2021_Vol1e_0.pdf</a>)
+     * The technical name which shall supplement the proper shipping name shall be the ISO common name. A recognized chemical name, if relevant a biological name, or another name currently used in scientific and technical handbooks, journals and texts. (see 3.1.2.8.1.1 in <a href="https://unece.org/sites/default/files/2021-01/ADR2021_Vol1e_0.pdf">ADR2021_Vol1e_0.pdf</a>)
      */
     private String technicalName;
 
     /**
-     * Indicator to be used in case commodity is classified as waste
+     * Indicator to be used in case a commodity is classified as waste
      */
     private boolean waste;
 
@@ -257,7 +257,7 @@ public class Adr {
     }
 
     /**
-     * Set the code to indicate tunnel category where restrictions apply to the passage of vehicles carrying dangerous goods. Categories A.B.C.D. and E as defined in 1.9.5.2.2. <a href="https://unece.org/sites/default/files/2021-01/ADR2021_Vol1e_0.pdf">ADR2021_Vol1e_0.pdf</a>
+     * Set the code to indicate a tunnel category where restrictions apply to the passage of vehicles carrying dangerous goods. Categories A.B.C.D. and E as defined in 1.9.5.2.2. <a href="https://unece.org/sites/default/files/2021-01/ADR2021_Vol1e_0.pdf">ADR2021_Vol1e_0.pdf</a>
      * @param tunnelCode The code to indicate tunnel category where restrictions apply to the passage of vehicles carrying dangerous goods. Categories A.B.C.D. and E as defined in 1.9.5.2.2. <a href="https://unece.org/sites/default/files/2021-01/ADR2021_Vol1e_0.pdf">ADR2021_Vol1e_0.pdf</a>
      */
     public void setTunnelCode(String tunnelCode) {
@@ -316,5 +316,26 @@ public class Adr {
      */
     public void setTransportCategory(Optional<TransportCategory> transportCategory) {
         this.transportCategory = transportCategory;
+    }
+
+    @Override
+    public String toString() {
+        return "Adr{" +
+                "unNumber='" + unNumber + '\'' +
+                ", language='" + language + '\'' +
+                ", description='" + description + '\'' +
+                ", technicalName='" + technicalName + '\'' +
+                ", waste=" + waste +
+                ", environmentallyHazardous=" + environmentallyHazardous +
+                ", clazz='" + clazz + '\'' +
+                ", classificationCode='" + classificationCode + '\'' +
+                ", packagingGroup='" + packagingGroup + '\'' +
+                ", dangerLabels=" + dangerLabels +
+                ", dangerNumber='" + dangerNumber + '\'' +
+                ", tunnelCode='" + tunnelCode + '\'' +
+                ", specialProvisions='" + specialProvisions + '\'' +
+                ", points=" + points +
+                ", transportCategory=" + transportCategory +
+                '}';
     }
 }

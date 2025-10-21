@@ -2,6 +2,8 @@ package otm.profile.profiles;
 
 import otm.profile.validation.ValidationResult;
 
+import java.io.IOException;
+
 /**
  * Defines a contract for validating a specific type of OTM entity against a profile.
  *
@@ -14,5 +16,5 @@ public interface IProfileValidator<T> {
      * @param entity The entity to validate.
      * @return A {@link ValidationResult} containing the validation outcome.
      */
-    ValidationResult validate(T entity);
+    ValidationResult validate(T entity) throws IOException;
 }

@@ -1,5 +1,6 @@
 package otm.model.entities;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class GenericConstraint extends ConstraintValueBase {
@@ -31,6 +32,13 @@ public class GenericConstraint extends ConstraintValueBase {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "GenericConstraint{" +
+                "description='" + description + '\'' +
+                '}';
+    }
 }
 
 class AndConstraint extends GenericConstraint {
@@ -41,7 +49,7 @@ class AndConstraint extends GenericConstraint {
     }
 
     /**
-     * All constraints in the array are combined using a boolean AND relation. This means that the resulting constraint will only apply if all constraints in the array would apply.
+     * All constraints in the array are combined using a boolean AND relation. This means that the resulting constraint will only apply if all constraints in the array apply.
      */
     private ConstraintValueBase[] and;
 
@@ -62,6 +70,13 @@ class AndConstraint extends GenericConstraint {
     public void setAnd(ConstraintValueBase[] and) {
         this.and = and;
     }
+
+    @Override
+    public String toString() {
+        return "AndConstraint{" +
+                "and=" + Arrays.toString(and) +
+                '}';
+    }
 }
 
 class OrConstraint extends GenericConstraint {
@@ -72,7 +87,7 @@ class OrConstraint extends GenericConstraint {
     }
 
     /**
-     * All constraints in the array are combined using a boolean OR relation. This means that the resulting constraint will apply if any of the constraints in the array would apply.
+     * All constraints in the array are combined using a boolean OR relation. This means that the resulting constraint will apply if any of the constraints in the array apply.
      */
     private ConstraintValueBase[] or;
 
@@ -84,6 +99,13 @@ class OrConstraint extends GenericConstraint {
 
     public void setOr(ConstraintValueBase[] or) {
         this.or = or;
+    }
+
+    @Override
+    public String toString() {
+        return "OrConstraint{" +
+                "or=" + Arrays.toString(or) +
+                '}';
     }
 }
 
@@ -141,12 +163,20 @@ class TimeWindowConstraint extends GenericConstraint {
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
+
+    @Override
+    public String toString() {
+        return "TimeWindowConstraint{" +
+                "startTime=" + startTime +
+                ", endTime=" + endTime +
+                '}';
+    }
 }
 
 enum ValueBoundConstraintValueType {SENSOR, SPEED, WEIGHT, TEMPERATURE, HEIGHT}
 
 /**
- * The upper and lower bounds the value bound constraint required. Available options are:
+ * The upper and lower bounds the value-bound constraint required. Available options are:
  * <ul>
  *     <li>{@code maximum}: All sensor values below and including the maximum value are allowed.</li>
  *     <li>{@code minimum}: All sensor values above and including the minimum value are allowed.</li>
@@ -217,5 +247,15 @@ class ValueBoundConstraint extends GenericConstraint {
 
     public void setMinimum(UnitWithValue minimum) {
         this.minimum = minimum;
+    }
+
+    @Override
+    public String toString() {
+        return "ValueBoundConstraint{" +
+                "valueType=" + valueType +
+                ", constraintType=" + constraintType +
+                ", maximum=" + maximum +
+                ", minimum=" + minimum +
+                '}';
     }
 }

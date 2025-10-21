@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * <p>
- * {@code Events} - like {@code actions} - model dynamic entities that couple various static entities at a certain moment in time. Events are used for either real-time updates, or updates on earlier provided data. Notice that in both event types these are updates on earlier provided data, whereas actions are usually used together with the entities they dynamically couple.
+ * {@code Events} - like {@code actions} - model dynamic entities that couple various static entities at a certain moment in time. Events are used for either real-time updates or updates on earlier provided data. Notice that in both event types these are updates on earlier provided data, whereas actions are usually used together with the entities they dynamically couple.
  * </p>
  * <p>
  * There are various kinds of events that fall into the two earlier mentioned kinds.
@@ -38,13 +38,13 @@ public abstract class Event extends OtmEntity {
 
     /**
      * A lifecycle models when the data in the action is taking place. You can provide the same action in multiple
-     * lifecycles to model how it changes over time. For example the planned and realized time of an action taking
+     * lifecycles to model how it changes over time. For example, the planned and realized time of an action taking
      * place can differ because of unforeseen circumstances (such as traffic jams).
      */
     private Lifecycle lifecycle;
 
     /**
-     * The actors associated with this transport order, for instance the consignor, consignee.
+     * The actors associated with this transport order, for instance, the consignor, consignee.
      */
     private List<InlineAssociationActorType> actors; // C# IEnumerable typically maps to Java List or Collection
 
@@ -82,5 +82,13 @@ public abstract class Event extends OtmEntity {
      */
     public void setActors(List<InlineAssociationActorType> actors) {
         this.actors = actors;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "lifecycle=" + lifecycle +
+                ", actors=" + actors +
+                '}';
     }
 }

@@ -3,7 +3,7 @@ package otm.model.entities;
 import java.util.List;
 
 /**
- * A {@link Vehicle} is a means to transport consignments from one location to potentially multiple other locations. There are various types of vehicles, each with their own unique properties like size, dimensions, fuel type and means of tranport (by air, on land, over sea).
+ * A {@link Vehicle} is a means to transport consignments from one location to potentially multiple other locations. There are various types of vehicles, each with their own unique properties like size, dimensions, fuel type and means of transport (by air, on land, over sea).
  */
 public class Vehicle extends OtmEntity {
     /**
@@ -44,7 +44,7 @@ public class Vehicle extends OtmEntity {
      * </p>
      * <ul>
      * <li><The {@code Vehicle} might be split up in multiple compartments./li>
-     * <li>You might want to express the load capacities in different quantities. E.g. in square meters or litres as well as in number of pallets.</li>
+     * <li>You might want to express the load capacities in different quantities. E.g., in square meters or liters as well as in the number of pallets.</li>
      * </ul>
      */
     private List<UnitWithValue> loadCapacities;
@@ -67,7 +67,7 @@ public class Vehicle extends OtmEntity {
     /**
      * The license plate of the vehicle.
      */
-    private String licencePlate;
+    private String licensePlate;
 
     /**
      * The weight of the Vehicle when empty.
@@ -81,7 +81,7 @@ public class Vehicle extends OtmEntity {
     private List<InlineAssociationType<Actor>> actors;
 
     /**
-     * Vehicles might have some sensors that are permanently attached; these can be described using the sensors field.
+     * Vehicles might have some sensors that are permanently attached; these can be described using the sensor field.
      * If one works with detachable sensors, the recommended approach is to use associationCreated and associationRemoved
      * events instead.
      */
@@ -279,17 +279,17 @@ public class Vehicle extends OtmEntity {
      *
      * @return The license plate.
      */
-    public String getLicencePlate() {
-        return licencePlate;
+    public String getLicensePlate() {
+        return licensePlate;
     }
 
     /**
      * Sets the license plate of the vehicle.
      *
-     * @param licencePlate The license plate to set.
+     * @param licensePlate The license plate to set.
      */
-    public void setLicencePlate(String licencePlate) {
-        this.licencePlate = licencePlate;
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
     }
 
     /**
@@ -362,5 +362,26 @@ public class Vehicle extends OtmEntity {
      */
     public void setActions(List<InlineAssociationType<Action>> actions) {
         this.actions = actions;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "vehicleType='" + vehicleType + '\'' +
+                ", fuel=" + fuel +
+                ", otherFuelType='" + otherFuelType + '\'' +
+                ", averageFuelConsumption=" + averageFuelConsumption +
+                ", emissionStandard=" + emissionStandard +
+                ", maxLinks=" + maxLinks +
+                ", loadCapacities=" + loadCapacities +
+                ", length=" + length +
+                ", height=" + height +
+                ", width=" + width +
+                ", licensePlate='" + licensePlate + '\'' +
+                ", emptyWeight=" + emptyWeight +
+                ", actors=" + actors +
+                ", sensors=" + sensors +
+                ", actions=" + actions +
+                '}';
     }
 }

@@ -6,12 +6,12 @@ package otm.model.entities;
 public class ActionResult {
 
     /**
-     * The status of the result, either succeeded, failed, partially succeeded, or canceled.
+     * The status of the result either succeeded, failed, partially succeeded, or canceled.
      */
     private ActionResultStatus status;
 
     /**
-     * The remark of the result, usually only interesting if the result was failed or
+     * The remark of the result, usually only interesting if the result failed or
      * partially succeeded. Note that this differs from the remark on an action, which is a remark
      * that's relevant before the action's execution. This remark is relevant for
      * the result after execution.
@@ -79,5 +79,14 @@ public class ActionResult {
      */
     public void setReason(String reason) {
         this.reason = reason;
+    }
+
+    @Override
+    public String toString() {
+        return "ActionResult{" +
+                "status=" + status +
+                ", remark='" + remark + '\'' +
+                ", reason='" + reason + '\'' +
+                '}';
     }
 }

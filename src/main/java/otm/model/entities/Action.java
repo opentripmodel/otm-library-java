@@ -1,5 +1,7 @@
 package otm.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -11,11 +13,11 @@ import java.util.Objects;
  * There are various types of Actions:
  * <ul>
  * <li>The Stop that models visiting a certain location at a certain time and potentially doing several other actions at that location.</li>
- * <li>The Load action, that models loading in one or multiple Consignments into a vehicle or some sort of container.</li>
- * <li>The Unload action, that models unloading one or multiple Consignments from a vehicle or some other sort of container.</li>
+ * <li>The Load action that models loading in one or multiple Consignments into a vehicle or some sort of container.</li>
+ * <li>The Unload action that models unloading one or multiple Consignments from a vehicle or some other sort of container.</li>
  * <li>The HandOver that indicates transferring a consignment from one Actor to another.</li>
  * <li>The Move that models moving between two or more locations, potentially with detailed route information on how to move between these locations.</li>
- * <li>The AttachTransportEquipment that allows you to attach some equipment to the associated vehicle. Note that you can both load/unload and attach/detach TransportEquipments. For instance, loading a container on a ship, or attach a trailer to a truck. So choose the one that is most appropriate.</li>
+ * <li>The AttachTransportEquipment that allows you to attach some equipment to the associated vehicle. Note that you can both load/unload and attach/detach TransportEquipments. For instance, loading a container on a ship or attach a trailer to a truck. So choose the one that is most appropriate.</li>
  * <li>The DetachTransportEquipment that allows you to detach some previously attached equipment from the associated vehicle.</li>
  * <li>The Break action that models a mandatory resting period for the driver of the vehicle. During this period, the driver is prohibited from doing any driving activities or other work.</li>
  * <li>The Wait action that models waiting at a particular location during the trip. This can be due to various circumstances such as waiting for the vehicle to be transported by a ferry or train. Or because of waiting at frontiers or docks (e.g., the dock of the loading/unload location is occupied) or traffic prohibitions. The driver is allowed to leave the vehicle during this period. An important aspect distinguishing this from the break action is that waiting times can be shortened because of changing circumstances. For example, if the original waiting time was expected to be 15 minutes because of an occupied dock, but the driver is 10 minutes late, the waiting time can be shortened to 5 minutes until the dock is free.</li>
@@ -58,15 +60,24 @@ public class Action extends OtmEntity {
     /**
      * The time at which the action starts
      */
+    @JsonFormat(
+            shape = JsonFormat.Shape.STRING,
+            pattern = "yyyy-MM-dd HH:mm:ss.SSS",
+            timezone = "UTC"
+    )
     private Date startTime;
 
     /**
      * The time at which the action is completed
      */
-    private Date endTime;
+    @JsonFormat(
+            shape = JsonFormat.Shape.STRING,
+            pattern = "yyyy-MM-dd HH:mm:ss.SSS",
+            timezone = "UTC"
+    )    private Date endTime;
 
     /**
-     * Associations actions
+     * Association actions
      */
     private List<InlineAssociationType<Action>> actions;
 
@@ -419,5 +430,26 @@ public class Action extends OtmEntity {
      */
     public void setDuration(String duration) {
         this.duration = duration;
+    }
+
+    @Override
+    public String toString() {
+        return "Action{" +
+                "actionType=" + actionType +
+                ", lifecycle=" + lifecycle +
+                ", remark='" + remark + '\'' +
+                ", stop=" + stop +
+                ", consignment=" + consignment +
+                ", location=" + location +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", actions=" + actions +
+                ", constraint=" + constraint +
+                ", result=" + result +
+                ", sequenceNr=" + sequenceNr +
+                ", timeFormat=" + timeFormat +
+                ", recurrence='" + recurrence + '\'' +
+                ", duration='" + duration + '\'' +
+                '}';
     }
 }

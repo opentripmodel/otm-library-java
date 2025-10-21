@@ -2,11 +2,20 @@ package otm.model.entities;
 
 public class InlineAssociationType<T> {
 
+    public InlineAssociationType(T actorLocation) {
+        this.entity = actorLocation;
+    }
+    public InlineAssociationType() {
+
+    }
+
+    private final AssociationType associationType = AssociationType.INLINE;
+
     /**
      * Type of association
      */
     public AssociationType getAssociationType() {
-        return AssociationType.INLINE;
+        return associationType;
     }
 
     /**
@@ -35,5 +44,14 @@ public class InlineAssociationType<T> {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "InlineAssociationType{" +
+                "associationType=" + associationType +
+                ", entity=" + entity +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
