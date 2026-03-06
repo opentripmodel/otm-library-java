@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+      <groupId>org.opentripmodel</groupId>
+      <artifactId>otm-toolkit</artifactId>
+      <version>1.0.2.1-SNAPSHOT</version>
+      <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>otm-toolkit-otm-5</artifactId>
+
+    <name>OTM Toolkit - OTM v5</name>
+    <description>Implementation of version 5 of OpenTripModel</description>
+
+    <dependencies>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>org.jspecify</groupId>
+        <artifactId>jspecify</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.annotation</groupId>
+        <artifactId>jakarta.annotation-api</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.validation</groupId>
+        <artifactId>jakarta.validation-api</artifactId>
+      </dependency>
+      <dependency>
+        <groupId>io.swagger.core.v3</groupId>
+        <artifactId>swagger-annotations-jakarta</artifactId>
+      </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                    <checkModificationExcludes>
+                        <checkModificationExclude>pom.xml</checkModificationExclude>
+                    </checkModificationExcludes>
+                </configuration>
+            </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+          </plugin>
+
+          <plugin>
+            <groupId>org.openapitools</groupId>
+            <artifactId>openapi-generator-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>generate</goal>
+                </goals>
+                <configuration>
+                  <inputSpec>
+                    ${project.basedir}/src/main/resources/otm-api-v5.7-fixed.yaml
+                  </inputSpec>
+                  <generatorName>spring</generatorName>
+                  <generateApis>false</generateApis>
+                  <generateSupportingFiles>false</generateSupportingFiles>
+                  <apiPackage>otm.v5.api</apiPackage>
+                  <modelPackage>otm.v5.model</modelPackage>
+                  <templateDirectory>${maven.multiModuleProjectDirectory}/openapi-generator-templates</templateDirectory>
+                  <typeMappings>
+                    <!-- avoid using Actor specific reference types and instead use generic reference types -->
+                    <typeMapping>ActorCompanyAllOfActors=ActorsReference</typeMapping>
+                    <typeMapping>ActorCompanyAllOfHeadoffice=LocationsReference</typeMapping>
+                    <typeMapping>ActorContactDetailsOneOf=ContactDetails</typeMapping>
+                    <typeMapping>ActorLocationsOneOf=LocationsReference</typeMapping>
+                  </typeMappings>
+                  <modelNameMappings>
+                    <!-- map model types to alternative name to avoid collision with auto-generated interfaces -->
+                    <modelNameMapping>handover-constraint=HandOverConstraintType</modelNameMapping>
+                    <modelNameMapping>handover-location=HandOverLocationType</modelNameMapping>
+                    <modelNameMapping>handover-stop=HandOverStopType</modelNameMapping>
+                    <modelNameMapping>route-entity-constraint=RouteEntityConstraintType</modelNameMapping>
+                    <modelNameMapping>route-constraint=RouteConstraintType</modelNameMapping>
+                    <modelNameMapping>goods=GoodsType</modelNameMapping>
+
+                    <!-- explicitly map API endpoints to a readable type name -->
+                    <modelNameMapping>_api_v5_actors__UUID__get_200_response=GetActorType</modelNameMapping>
+                    <modelNameMapping>_api_v5_actors__UUID__get_200_response_contactDetails_inner=ContactDetails</modelNameMapping>
+                    <modelNameMapping>_api_v5_actors__UUID__get_200_response_locations_inner=LocationsReference</modelNameMapping>
+                    <modelNameMapping>_api_v5_locations__UUID__get_200_response=GetLocationsType</modelNameMapping>
+                    <modelNameMapping>_api_v5_locations__UUID__get_200_response_constraint=LocationConstraintsReference</modelNameMapping>
+                    <modelNameMapping>_api_v5_locations__UUID__get_200_response_actors_inner=ActorsReference</modelNameMapping>
+                    <modelNameMapping>_api_v5_routes__UUID__get_200_response=GetRouteType</modelNameMapping>
+                    <modelNameMapping>_api_v5_routes__UUID__get_200_response_constraint=RouteConstraintsReference</modelNameMapping>
+                    <modelNameMapping>_api_v5_sensors__UUID__get_200_response=GetSensorType</modelNameMapping>
+                    <modelNameMapping>_api_v5_sensors__UUID__get_200_response_constraint=SensorConstraintsReference</modelNameMapping>
+                    <modelNameMapping>_api_v5_consignments__UUID__get_200_response=GetConsignmentType</modelNameMapping>
+                    <modelNameMapping>_api_v5_consignments__UUID__get_200_response_goods_inner=GoodsReference</modelNameMapping>
+                    <modelNameMapping>_api_v5_consignments__UUID__get_200_response_transportOrder=TransportOrderReference</modelNameMapping>
+                    <modelNameMapping>_api_v5_consignments__UUID__get_200_response_documents_inner=DocumentsReference</modelNameMapping>
+                    <modelNameMapping>_api_v5_consignments__UUID__get_200_response_constraint=ConsignmentConstraintsReference</modelNameMapping>
+                    <modelNameMapping>_api_v5_consignments__UUID__get_200_response_relatedConsignments_inner=RelatedConsignmentsReference</modelNameMapping>
+                    <modelNameMapping>_api_v5_goods__UUID__get_200_response=GetGoodType</modelNameMapping>
+                    <modelNameMapping>_api_v5_transportOrders__UUID__get_200_response=GetTransportOrderType</modelNameMapping>
+                    <modelNameMapping>_api_v5_transportOrders__UUID__get_200_response_consignments_inner=ConsignmentsReference</modelNameMapping>
+                    <modelNameMapping>_api_v5_transportOrders__UUID__get_200_response_constraint=TransportOrderConstraintsReference</modelNameMapping>
+                    <modelNameMapping>_api_v5_trips__UUID__get_200_response=GetTripType</modelNameMapping>
+                    <modelNameMapping>_api_v5_trips__UUID__get_200_response_constraint=TripConstraintsReference</modelNameMapping>
+                    <modelNameMapping>_api_v5_trips__UUID__get_200_response_vehicle=VehiclesReference</modelNameMapping>
+                    <modelNameMapping>_api_v5_vehicles__UUID__get_200_response=GetVehicleType</modelNameMapping>
+                    <modelNameMapping>_api_v5_vehicles__UUID__get_200_response_sensors_inner=SensorsReference</modelNameMapping>
+                    <modelNameMapping>_api_v5_vehicles__UUID__get_200_response_averageFuelConsumption=AverageFuelConsumption</modelNameMapping>
+                    <modelNameMapping>_api_v5_vehicles__UUID__get_200_response_loadCapacities_inner=LoadCapacities</modelNameMapping>
+                    <modelNameMapping>_api_v5_vehicles__UUID__get_200_response_length=Length</modelNameMapping>
+                    <modelNameMapping>_api_v5_vehicles__UUID__get_200_response_height=Height</modelNameMapping>
+                    <modelNameMapping>_api_v5_vehicles__UUID__get_200_response_width=Width</modelNameMapping>
+                    <modelNameMapping>_api_v5_vehicles__UUID__get_200_response_emptyWeight=EmptyWeight</modelNameMapping>
+                    <modelNameMapping>_api_v5_documents__UUID__get_200_response_creator=DocumentCreatorReference</modelNameMapping>
+                    <modelNameMapping>_api_v5_documents__UUID__get_200_response_owner=DocumentOwnerReference</modelNameMapping>
+                    <modelNameMapping>_api_v5_documents__UUID__get_200_response=GetDocumentType</modelNameMapping>
+                    <modelNameMapping>_api_v5_constraints__UUID__get_200_response=GetConstraintType</modelNameMapping>
+
+                    <!-- These are all exactly the same so rename to the same single file -->
+                    <modelNameMapping>_api_v5_locations__UUID__get_200_response_geoReference=GeoReference</modelNameMapping>
+                    <modelNameMapping>_api_v5_routes__UUID__get_200_response_geoReference=GeoReference</modelNameMapping>
+                    <modelNameMapping>_api_v5_routes__UUID__get_200_response_geoReferences=GeoReference</modelNameMapping>
+                  </modelNameMappings>
+                  <importMappings>
+                    <importMapping>Nullable=org.jspecify.annotations.Nullable</importMapping>
+                  </importMappings>
+                  <configOptions>
+                    <generateBuilders>true</generateBuilders>
+                    <delegatePattern>true</delegatePattern>
+                    <useSpringBoot3>true</useSpringBoot3>
+                    <openApiNullable>false</openApiNullable>
+                    <interfaceOnly>true</interfaceOnly>
+                    <useSealed>true</useSealed>
+                    <useDeductionForOneOfInterfaces>true</useDeductionForOneOfInterfaces>
+                    <skipDefaultInterface>true</skipDefaultInterface>
+                    <additionalModelTypeAnnotations>
+                      <![CDATA[
+                      @com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY);
+                      @org.jspecify.annotations.NullMarked;
+                      ]]>
+                    </additionalModelTypeAnnotations>
+                  </configOptions>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <profile>
+            <id>sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>env.CI</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.7.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                            <autoPublish>true</autoPublish>
+                            <waitUntil>published</waitUntil>
+                        </configuration>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>3.2.7</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                                <configuration>
+                                    <keyname>${gpg.keyname}</keyname>
+                                    <passphraseServerId>${gpg.keyname}</passphraseServerId>
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.11.2</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.3.1</version> <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar-no-fork</goal> </goals>
+                        </execution>
+                    </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
