@@ -1,0 +1,417 @@
+$schema: 'https://json-schema.org/draft/2020-12/schema'
+title: 'OTM profile - Carbon Footprint - CO2 Calculation Input version 0.1 (DRAFT)'
+description: >-
+  Validates an OTM trip as input for a CO2 emission calculation, based on the OTM Carbon
+  Footprint profile (DRAFT) and the DALTI "Uniforme kernset CO2e" input dataset. The final
+  message model is maintained by SUTC on https://sutc.semantic-treehouse.nl/specifications;
+  this schema should be regenerated once the profile is formally released.
+type: object
+required:
+  - entityType
+  - transportMode
+  - vehicle
+  - actions
+  - contextEvents
+additionalProperties: false
+properties:
+  entityType:
+    enum:
+      - trip
+    type: string
+  id:
+    type: string
+  name:
+    type: string
+  creationDate:
+    type: string
+  lastModified:
+    type: string
+  externalAttributes:
+    type: object
+  status:
+    enum:
+      - accepted
+      - cancelled
+      - completed
+      - confirmed
+      - draft
+      - inTransit
+      - modified
+      - requested
+    type: string
+  transportMode:
+    enum:
+      - air
+      - inlandWaterway
+      - maritime
+      - rail
+      - road
+    type: string
+  vehicle:
+    type: object
+    required:
+      - associationType
+      - entity
+    properties:
+      associationType:
+        enum:
+          - inline
+        type: string
+      description:
+        type: string
+      entity:
+        type: object
+        required:
+          - licensePlate
+        properties:
+          id:
+            type: string
+          vehicleType:
+            type: string
+          licensePlate:
+            minLength: 1
+            maxLength: 12
+            type: string
+          fuel:
+            enum:
+              - petrol
+              - diesel
+              - electricity
+              - hydrogen
+              - lng
+              - cng
+              - adBlue
+              - other
+            type: string
+          otherFuelType:
+            type: string
+          averageFuelConsumption:
+            $ref: '#/$defs/unitWithValue'
+          emissionStandard:
+            enum:
+              - euro0
+              - euro1
+              - euro2
+              - euro3
+              - euro4
+              - euro5
+              - euro6
+            type: string
+          emptyWeight:
+            $ref: '#/$defs/unitWithValue'
+          loadCapacities:
+            type: array
+  actors:
+    type: array
+    items:
+      type: object
+      required:
+        - associationType
+        - entity
+      properties:
+        associationType:
+          enum:
+            - inline
+          type: string
+        entity:
+          type: object
+          required:
+            - name
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+  actions:
+    type: array
+    minItems: 2
+    items:
+      $ref: '#/$defs/stopAssociation'
+    allOf:
+      - contains:
+          $ref: '#/$defs/stopContainingActionType/load'
+      - contains:
+          $ref: '#/$defs/stopContainingActionType/unload'
+  contextEvents:
+    type: array
+    contains:
+      type: object
+      required:
+        - eventType
+      properties:
+        eventType:
+          const: fuelConsumedEvent
+    items:
+      type: object
+      required:
+        - eventType
+      if:
+        properties:
+          eventType:
+            const: fuelConsumedEvent
+      then:
+        $ref: '#/$defs/fuelConsumedEvent'
+  constraints:
+    type: array
+$defs:
+  unitWithValue:
+    type: object
+    required:
+      - value
+      - unit
+    properties:
+      value:
+        type: number
+      unit:
+        type: string
+  location:
+    type: object
+    required:
+      - entity
+    properties:
+      associationType:
+        enum:
+          - inline
+        type: string
+      description:
+        type: string
+      entity:
+        type: object
+        required:
+          - administrativeReference
+        properties:
+          id:
+            type: string
+          name:
+            type: string
+          type:
+            type: string
+          geoReference:
+            type: object
+          administrativeReference:
+            type: object
+            required:
+              - country
+              - postalCode
+            properties:
+              name:
+                type: string
+              street:
+                type: string
+              houseNumber:
+                type: string
+              houseNumberAddition:
+                type: string
+              postalCode:
+                type: string
+              city:
+                type: string
+              country:
+                minLength: 2
+                maxLength: 2
+                type: string
+  stopAssociation:
+    type: object
+    required:
+      - associationType
+      - entity
+    properties:
+      associationType:
+        enum:
+          - inline
+        type: string
+      description:
+        type: string
+      entity:
+        type: object
+        required:
+          - actionType
+          - location
+          - startTime
+        properties:
+          id:
+            type: string
+          actionType:
+            enum:
+              - stop
+            type: string
+          lifecycle:
+            type: string
+          sequenceNr:
+            type: integer
+          startTime:
+            type: string
+          endTime:
+            type: string
+          location:
+            $ref: '#/$defs/location'
+          actions:
+            type: array
+            items:
+              $ref: '#/$defs/nestedActionAssociation'
+  nestedActionAssociation:
+    type: object
+    required:
+      - entity
+    properties:
+      associationType:
+        enum:
+          - inline
+        type: string
+      description:
+        type: string
+      entity:
+        type: object
+        required:
+          - actionType
+        properties:
+          actionType:
+            enum:
+              - load
+              - unload
+              - handOver
+              - attachTransportEquipment
+              - detachTransportEquipment
+              - move
+              - genericAction
+            type: string
+          consignment:
+            $ref: '#/$defs/consignmentAssociation'
+  consignmentAssociation:
+    type: object
+    required:
+      - entity
+    properties:
+      associationType:
+        enum:
+          - inline
+        type: string
+      description:
+        type: string
+      entity:
+        type: object
+        required:
+          - goods
+        properties:
+          id:
+            type: string
+          description:
+            type: string
+          type:
+            type: string
+          goods:
+            type: array
+            minItems: 1
+            items:
+              type: object
+              required:
+                - entity
+              properties:
+                associationType:
+                  enum:
+                    - inline
+                  type: string
+                entity:
+                  type: object
+                  required:
+                    - quantity
+                  properties:
+                    quantity:
+                      type: number
+                    weight:
+                      $ref: '#/$defs/unitWithValue'
+                    grossWeight:
+                      $ref: '#/$defs/unitWithValue'
+  stopContainingActionType:
+    load:
+      type: object
+      required:
+        - entity
+      properties:
+        entity:
+          type: object
+          required:
+            - actions
+          properties:
+            actions:
+              type: array
+              contains:
+                type: object
+                required:
+                  - entity
+                properties:
+                  entity:
+                    type: object
+                    required:
+                      - actionType
+                    properties:
+                      actionType:
+                        const: load
+    unload:
+      type: object
+      required:
+        - entity
+      properties:
+        entity:
+          type: object
+          required:
+            - actions
+          properties:
+            actions:
+              type: array
+              contains:
+                type: object
+                required:
+                  - entity
+                properties:
+                  entity:
+                    type: object
+                    required:
+                      - actionType
+                    properties:
+                      actionType:
+                        const: unload
+  fuelConsumedEvent:
+    type: object
+    required:
+      - eventType
+      - fuel
+      - amount
+      - emissionFactorStandard
+      - periodStart
+      - periodEnd
+    properties:
+      eventType:
+        const: fuelConsumedEvent
+      id:
+        type: string
+      lifecycle:
+        type: string
+      fuel:
+        enum:
+          - petrol
+          - diesel
+          - electricity
+          - hydrogen
+          - lng
+          - cng
+          - adBlue
+          - other
+        type: string
+      otherFuelType:
+        type: string
+      amount:
+        $ref: '#/$defs/unitWithValue'
+      emissionFactorStandard:
+        minLength: 1
+        type: string
+      periodStart:
+        type: string
+      periodEnd:
+        type: string
+      vehicle:
+        type: object
+      consignment:
+        type: object
+      location:
+        type: object
