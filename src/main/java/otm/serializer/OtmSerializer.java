@@ -3,6 +3,7 @@ package otm.serializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import otm.model.entities.Event;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.IOException;
@@ -33,6 +34,8 @@ public class OtmSerializer implements IOtmSerializer {
         enumModule.addSerializer(new CamelCaseEnumSerializer());
         // Add deserializer for enums, turning the camelCase string back to the enum value
         enumModule.addDeserializer(Enum.class, new CamelCaseEnumDeserializer(Enum.class));
+        // Add deserializer for abstract events, dispatching on the eventType discriminator
+        enumModule.addDeserializer(Event.class, new OtmEventDeserializer());
 
         this.objectMapper.setTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault()));
 

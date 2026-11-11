@@ -1,0 +1,167 @@
+$schema: 'https://json-schema.org/draft/2020-12/schema'
+title: 'OTM profile - Carbon Footprint - CO2 Calculation Result version 0.1 (DRAFT)'
+description: >-
+  Validates an OTM trip carrying calculated CO2 emission results, based on the OTM Carbon
+  Footprint profile (DRAFT) and the DALTI "Uniforme kernset CO2e" result dataset. The final
+  message model is maintained by SUTC on https://sutc.semantic-treehouse.nl/specifications;
+  this schema should be regenerated once the profile is formally released.
+type: object
+required:
+  - entityType
+  - contextEvents
+additionalProperties: false
+properties:
+  entityType:
+    enum:
+      - trip
+    type: string
+  id:
+    type: string
+  name:
+    type: string
+  creationDate:
+    type: string
+  lastModified:
+    type: string
+  externalAttributes:
+    type: object
+  status:
+    enum:
+      - accepted
+      - cancelled
+      - completed
+      - confirmed
+      - draft
+      - inTransit
+      - modified
+      - requested
+    type: string
+  transportMode:
+    enum:
+      - air
+      - inlandWaterway
+      - maritime
+      - rail
+      - road
+    type: string
+  vehicle:
+    type: object
+  actors:
+    type: array
+  actions:
+    type: array
+  constraints:
+    type: array
+  contextEvents:
+    type: array
+    contains:
+      type: object
+      required:
+        - eventType
+      properties:
+        eventType:
+          const: emissionEvent
+    items:
+      type: object
+      required:
+        - eventType
+      if:
+        properties:
+          eventType:
+            const: emissionEvent
+      then:
+        $ref: '#/$defs/emissionEvent'
+$defs:
+  unitWithValue:
+    type: object
+    required:
+      - value
+      - unit
+    properties:
+      value:
+        type: number
+      unit:
+        type: string
+  emissionEvent:
+    type: object
+    required:
+      - eventType
+      - amount
+      - periodStart
+      - periodEnd
+      - calculationMethod
+    properties:
+      eventType:
+        const: emissionEvent
+      id:
+        type: string
+      lifecycle:
+        type: string
+      amount:
+        $ref: '#/$defs/unitWithValue'
+      method:
+        type: string
+      emissionIntensity:
+        $ref: '#/$defs/unitWithValue'
+      periodStart:
+        type: string
+      periodEnd:
+        type: string
+      calculationMethod:
+        type: object
+        required:
+          - framework
+          - isoReference
+          - distanceAllocationMethod
+          - granularity
+          - dataClassification
+        properties:
+          framework:
+            minLength: 1
+            type: string
+          isoReference:
+            minLength: 1
+            type: string
+          distanceAllocationMethod:
+            enum:
+              - gcd
+              - sfd
+            type: string
+          granularity:
+            enum:
+              - day
+              - week
+              - month
+              - quarter
+              - year
+            type: string
+          dataClassification:
+            enum:
+              - bronze
+              - silver
+              - gold
+              - goldPlus
+            type: string
+          dataTypeDistribution:
+            type: array
+            items:
+              type: object
+              required:
+                - dataType
+              properties:
+                dataType:
+                  enum:
+                    - primary
+                    - modelled
+                    - default
+                  type: string
+                share:
+                  type: number
+                  minimum: 0
+                  maximum: 1
+      vehicle:
+        type: object
+      consignment:
+        type: object
+      location:
+        type: object

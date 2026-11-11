@@ -1,5 +1,7 @@
 package otm.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -142,6 +144,7 @@ public abstract class OtmEntity {
      *
      * @return The context events.
      */
+    @JsonProperty("contextEvents")
     public List<Event> getEvents(){
         return contextEvents;
     }
@@ -150,6 +153,7 @@ public abstract class OtmEntity {
      * Sets the context events.
      * @param events The context events to set.
      */
+    @JsonProperty("contextEvents")
     public void setEvents(List<Event> events){
         this.contextEvents = events;
     }

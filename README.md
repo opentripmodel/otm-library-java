@@ -14,6 +14,10 @@ This library offers:
 
 * **Data model classes:** Java classes representing the core OTM entities (e.g., Trip, Location, Event). 
 * **Parsing/Serialization utilities:** Functionality to easily convert between OTM JSON and Java objects. 
+* **Profile validators:** Validate messages against OTM profiles (pass/fail with reasons):
+  * `CbsProfileValidator` — [CBS wegvervoer statistiek](https://www.opentripmodel.org/docs/profiles/cbs_wegvervoer)
+  * `TransportOrderProfileValidator` — [Transport order](https://www.opentripmodel.org/docs/profiles/transport_order)
+  * `CarbonFootprintInputProfileValidator` / `CarbonFootprintResultProfileValidator` — [Carbon Footprint](https://www.opentripmodel.org/docs/profiles/carbon-footprint) (DRAFT), see [doc/carbon-footprint-profile.md](doc/carbon-footprint-profile.md)
 
 * **Support for OTM version 5.**
 
